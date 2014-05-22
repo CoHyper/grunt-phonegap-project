@@ -25,12 +25,11 @@ module.exports = function(grunt) {
             done = this.async(),
             isAndroidPlatformAdded = false,
             options = this.options({
-                // global options
-                title: 'Appsmatic',
-                bundleId: 'de.svl-pe.appsmatic',
-                path: 'AppsmaticProject',
-                template: '../AppsmaticTemplates',
-                fileAndroidManifest: 'platforms/android/AndroidManifest.xml',
+                // require global options
+                title: 'MyyApp',
+                bundleId: 'de.myylinks.myyapp',
+                path: 'phoneGapProject',
+                fileAndroidManifest: '/platforms/android/AndroidManifest.xml',
                 androidMinSdk: UNDEFINED_ANDROID_MIN_SDK,
                 androidTargetSdk: UNDEFINED_ANDROID_TARGET_SDK
             });
@@ -52,7 +51,7 @@ module.exports = function(grunt) {
 
         function replaceAndroidSdk() {
 
-            var filePath = options.path + '/' + options.fileAndroidManifest,
+            var filePath = options.path + options.fileAndroidManifest,
                 fileSource = '',
                 isFileChanged = false,
                 minSdkExp = /minSdkVersion\=\"[0-9]+\"/,
