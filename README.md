@@ -25,15 +25,12 @@ grunt.loadNpmTasks('grunt-phonegap-project');
 </pre>
 
 ## The "phonegap_project" Require
+To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
 #### cordova
 <pre>
 $ npm install cordova -g
 </pre>
-
-#### need SDK for install platform(s)
-* [Android](http://developer.android.com/sdk/index.html)
-* iOS
 
 ## The "phonegap_project" Options
 All options are optional.
