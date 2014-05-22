@@ -1,5 +1,9 @@
 # grunt-phonegap-project
-> Build a Phonegap application.
+> Build a [Phonegap](http://www.phonegap.com) application.
+
+[![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
+[![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies)
+[![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
 
 ## License
 Copyright (c) 2014 svenlang<br />
@@ -84,7 +88,7 @@ grunt.initConfig({
   }
 });
 
-grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
+grunt.registerTask('phonegap: 1 create new app', ['phonegap_project:create']);
 </pre>
 
 #### build
@@ -92,7 +96,7 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 Type: `Array`
 
 <pre>
-grunt.registerTask('phonegap: 2 build app with platform(s)', ['phonegap_project:build']);
+grunt.registerTask('phonegap: 2 build app', ['phonegap_project:build']);
 </pre>
 
 ## Full Examples
@@ -100,7 +104,7 @@ grunt.registerTask('phonegap: 2 build app with platform(s)', ['phonegap_project:
 grunt.initConfig({
   phonegap_project: {
     options: {
-      path: '',
+      path: 'phoneGapProject',
       androidMinSdk: 10
       androidTargetSdk: 19
     },
@@ -126,7 +130,7 @@ grunt.initConfig({
 });
 
 grunt.registerTask('phonegap: 1 create new app', ['phonegap_project:create']);
-grunt.registerTask('phonegap: 2 build app with platform(s)', ['phonegap_project:build']);
+grunt.registerTask('phonegap: 2 build app', ['phonegap_project:build']);
 </pre>
 
 ## Contributing
