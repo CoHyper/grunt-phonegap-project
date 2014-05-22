@@ -1,7 +1,7 @@
 {
   "name": "grunt-phonegap-project",
   "description": "Build a Phonegap application.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
     "name": "svenlang",
@@ -38,6 +38,12 @@
   "keywords": [
     "gruntplugin",
     "phonegap",
-    "cordova"
+    "cordova",
+    "androidMinSdk",
+    "androidTargetSdk",
+    "create",
+    "build",
+    "plugin",
+    "platform"
   ]
 }
