@@ -47,7 +47,7 @@ Changed in `./platforms/android/AndroidManifest.xml` after create new app.
 Type: `Integer`<br />
 Changed in `./platforms/android/AndroidManifest.xml` after create new app.
 
-## The "phonegap_project" task
+## The "phonegap_project" Task
 
 #### create
 WARNING: This function delete folder of `options.path`.
@@ -60,11 +60,11 @@ Type: `String`, Default: `de.myylinks.myyapp`
 
 * `platforms`<br />
 Type: `Array`<br />
-install directly with cordova command
+install directly with cordova command.
 
 * `plugins`<br />
 Type: `Array`<br />
-install directly with cordova command
+install directly with cordova command.
 
 <pre>
 grunt.initConfig({
@@ -93,6 +93,18 @@ grunt.registerTask('phonegap: 1 create new app', ['phonegap_project:create']);
 Type: `Array`
 
 <pre>
+grunt.initConfig({
+  phonegap_project: {
+  options: {},
+    build: {
+      platforms: [
+        'ios',
+        'android'
+      ]
+    }
+  }
+});
+
 grunt.registerTask('phonegap: 2 build app', ['phonegap_project:build']);
 </pre>
 
