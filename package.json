@@ -1,6 +1,6 @@
 {
   "name": "grunt-phonegap-project",
-  "description": "The best Grunt plugin ever.",
+  "description": "Build a Phonegap application.",
   "version": "0.1.0",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
@@ -36,6 +36,8 @@
     "grunt": "~0.4.4"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "phonegap",
+    "cordova"
   ]
 }
