@@ -1,6 +1,10 @@
+# GruntJS
 node_modules
 npm-debug.log
 tmp
+
+# test app
+myyapp/
 
 # WebStorm IDE
 .idea
