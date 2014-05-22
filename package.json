@@ -1,0 +1,41 @@
+{
+  "name": "grunt-phonegap-project",
+  "description": "The best Grunt plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
+  "author": {
+    "name": "svenlang",
+    "email": "svenlang07@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoHyper/grunt-phonegap-project"
+  },
+  "bugs": {
+    "url": "https://github.com/CoHyper/grunt-phonegap-project/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/CoHyper/grunt-phonegap-project/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.4"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
