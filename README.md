@@ -1,9 +1,11 @@
 # grunt-phonegap-project
-> Build a [Phonegap](http://www.phonegap.com) application.
+> Create a [Phonegap](http://www.phonegap.com) Application with platforms, plugins, androidMinSdk and androidTargetSdk.
 
-[![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
-[![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies)
+[![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
+[![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
+
+[![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
 
 ## License
 Copyright (c) 2014 svenlang<br />
@@ -41,16 +43,16 @@ Path to install the phonegap app.
 
 #### androidMinSdk
 Type: `Integer`<br />
-Changed in `./platforms/android/AndroidManifest.xml` after create new app.
+Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
 
 #### androidTargetSdk
 Type: `Integer`<br />
-Changed in `./platforms/android/AndroidManifest.xml` after create new app.
+Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
 
 ## The "phonegap_project" Task
 
 #### create
-WARNING: This function delete folder of `options.path`.
+WARNING: This task delete folder of `options.path`.
 
 * `title`<br />
 Type: `String`, Default: `MyyApp`
@@ -85,7 +87,7 @@ grunt.initConfig({
   }
 });
 
-grunt.registerTask('phonegap: 1 create new app', ['phonegap_project:create']);
+grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 </pre>
 
 #### build
@@ -105,7 +107,7 @@ grunt.initConfig({
   }
 });
 
-grunt.registerTask('phonegap: 2 build app', ['phonegap_project:build']);
+grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 </pre>
 
 ## Full Examples
@@ -114,7 +116,7 @@ grunt.initConfig({
   phonegap_project: {
     options: {
       path: 'phoneGapProject',
-      androidMinSdk: 10
+      androidMinSdk: 10,
       androidTargetSdk: 19
     },
     create: {
@@ -138,21 +140,23 @@ grunt.initConfig({
   }
 });
 
-grunt.registerTask('phonegap: 1 create new app', ['phonegap_project:create']);
-grunt.registerTask('phonegap: 2 build app', ['phonegap_project:build']);
+grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
+grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 </pre>
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
 ## Release History
+
+##### 2014-05-23 v0.1.2
+* update readme.md
+* add some tests
+* bugfix grunt 
 
 ##### 2014-05-22 v0.1.1
 * clean project for public
 
 ##### 2014-04-24 v0.1.0
 * add some defaults cordova commands
-  * cordova create -folder- -bundleid- -apptitle-
-  * cordova platform add -platform-
-  * cordova plugin add -plugin-
-  * cordova build -platform-
+* cordova create -folder- -bundleid- -apptitle-
+* cordova platform add -platform-
+* cordova plugin add -plugin-
+* cordova build -platform-
