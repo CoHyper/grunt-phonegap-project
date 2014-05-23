@@ -10,6 +10,17 @@
 
 module.exports = function(grunt) {
 
+    function getPlatforms() {
+        // Travis cant install with javascript iOS and/or Android SDK
+        // so local can test without any changed
+        var platforms = [
+            'ios',
+            'android'
+        ];
+        // TODO : perhaps other solution
+        return grunt.file.isFile("../grunt_debug.js") ? platforms : [];
+    }
+
     // Project configuration.
     grunt.initConfig({
         jshint: {
@@ -48,13 +59,7 @@ module.exports = function(grunt) {
             create: {
                 title: 'MyyApp',
                 bundleId: 'de.myylinks.myyapp',
-                platforms: [
-                    /** comment for travis test
-                     * cant install with javascript Android SDK and/or iOS
-                     */
-                    // 'ios'
-                    // 'android'
-                ],
+                platforms: getPlatforms(),
                 plugins: [
                     // add all cordova plugins, for testing with travis
                     "org.apache.cordova.battery-status",
@@ -78,10 +83,7 @@ module.exports = function(grunt) {
                 ]
             },
             build: {
-                platforms: [
-                    'ios',
-                    'android'
-                ]
+                platforms: getPlatforms()
             }
         },
 
