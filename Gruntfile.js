@@ -10,6 +10,17 @@
 
 module.exports = function(grunt) {
 
+    function getPlatforms() {
+        // Travis cant install with javascript iOS and/or Android SDK
+        // so local can test without any changed
+        var platforms = [
+            'ios',
+            'android'
+        ];
+        // TODO : perhaps other solution
+        return grunt.file.isFile("../grunt_debug.js") ? platforms : [];
+    }
+
     // Project configuration.
     grunt.initConfig({
         jshint: {
@@ -48,20 +59,31 @@ module.exports = function(grunt) {
             create: {
                 title: 'MyyApp',
                 bundleId: 'de.myylinks.myyapp',
-                platforms: [
-                    'ios',
-                    'android'
-                ],
+                platforms: getPlatforms(),
                 plugins: [
-                    'org.apache.cordova.camera',
-                    'org.apache.cordova.battery-status'
+                    // add all cordova plugins, for testing with travis
+                    "org.apache.cordova.battery-status",
+                    "org.apache.cordova.camera",
+                    "org.apache.cordova.console",
+                    "org.apache.cordova.contacts",
+                    "org.apache.cordova.device",
+                    "org.apache.cordova.device-motion",
+                    "org.apache.cordova.device-orientation",
+                    "org.apache.cordova.dialogs",
+                    "org.apache.cordova.file",
+                    "org.apache.cordova.file-transfer",
+                    "org.apache.cordova.geolocation",
+                    "org.apache.cordova.globalization",
+                    "org.apache.cordova.inappbrowser",
+                    "org.apache.cordova.media",
+                    "org.apache.cordova.media-capture",
+                    "org.apache.cordova.network-information",
+                    "org.apache.cordova.splashscreen",
+                    "org.apache.cordova.vibration"
                 ]
             },
             build: {
-                platforms: [
-                    'ios',
-                    'android'
-                ]
+                platforms: getPlatforms()
             }
         },
 
@@ -85,10 +107,11 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['clean', 'phonegap_project', 'nodeunit']);
 
     // By default, lint and run all tests.
-    grunt.registerTask('default', ['jshint', 'test', 'phonegap_project:create', 'phonegap_project:build']);
+    grunt.registerTask('default', ['jshint', 'test']);
 
-    grunt.registerTask('1 create', ['phonegap_project:create']);
-    grunt.registerTask('2 build', ['phonegap_project:build']);
-
+    // All "phonegap_project" tasks
+    grunt.registerTask('project', ['phonegap_project']);
+    grunt.registerTask('create', ['phonegap_project:create']);
+    grunt.registerTask('build', ['phonegap_project:build']);
 
 };

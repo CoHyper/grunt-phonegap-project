@@ -1,14 +1,10 @@
 # grunt-phonegap-project
-> Create a [Phonegap](http://www.phonegap.com) Application with config folder, bundleId, platforms, plugins, androidMinSdk and androidTargetSdk.
+> Create a [Phonegap](http://www.phonegap.com) Application with config folder, bundleId, platforms, plugins, androidMinSdk or androidTargetSdk.
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
 [![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies) [![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
 
 [![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
-
-## License
-Copyright (c) 2014 svenlang<br />
-Licensed under the MIT license.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.4`
@@ -57,15 +53,16 @@ WARNING: This task delete folder of `options.path`.
 Type: `String`, Default: `MyyApp`
 
 * `bundleId`<br />
-Type: `String`, Default: `de.myylinks.myyapp`
+Type: `String`, Default: `de.myylinks.myyapp`<br />
+Unique identifier Package name for all Android Apps.
 
 * `platforms`<br />
-Type: `Array`<br />
-install directly with cordova command.
+Type: `Array`, Default: `[]`<br />
+Install directly with cordova command.
 
 * `plugins`<br />
-Type: `Array`<br />
-install directly with cordova command.
+Type: `Array`, Default: `[]`
+Install directly with cordova command.
 
 <pre>
 grunt.initConfig({
@@ -91,7 +88,7 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 
 #### build
 * platforms<br />
-Type: `Array`
+Type: `Array`, Default: `[]`
 
 <pre>
 grunt.initConfig({
@@ -147,8 +144,8 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
-* add some tests
-* bugfix grunt 
+* bugfix some grunt functions
+* add travis
 
 ##### 2014-05-22 v0.1.1
 * clean project for public
@@ -159,3 +156,7 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * cordova platform add -platform-
 * cordova plugin add -plugin-
 * cordova build -platform-
+
+## License
+Copyright (c) 2014 svenlang<br />
+Licensed under the MIT license.

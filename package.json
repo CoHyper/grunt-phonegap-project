@@ -5,7 +5,8 @@
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
     "name": "svenlang",
-    "email": "svenlang07@gmail.com"
+    "email": "svenlang07@gmail.com",
+    "url": "http://myylinks.de"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,13 @@
     }
   ],
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "project": "grunt 'phonegap_project'",
+    "create": "grunt 'phonegap_project:create'",
+    "build": "grunt 'phonegap_project:build'"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
