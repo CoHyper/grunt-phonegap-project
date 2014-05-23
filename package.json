@@ -26,7 +26,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "project": "grunt 'phonegap_project'",
     "create": "grunt 'phonegap_project:create'",
     "build": "grunt 'phonegap_project:build'"
   },
