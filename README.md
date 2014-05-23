@@ -6,10 +6,6 @@
 
 [![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
 
-## License
-Copyright (c) 2014 svenlang<br />
-Licensed under the MIT license.
-
 ## Getting Started
 This plugin requires Grunt `~0.4.4`
 
@@ -143,12 +139,17 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 </pre>
 
+## License
+Copyright (c) 2014 svenlang<br />
+Licensed under the MIT license.
+
 ## Release History
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
 * add some tests
-* bugfix grunt 
+* bugfix grunt
+* add build script
 
 ##### 2014-05-22 v0.1.1
 * clean project for public
