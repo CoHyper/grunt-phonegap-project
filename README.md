@@ -88,7 +88,7 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 
 #### build
 * platforms<br />
-Type: `Array`, Default: []
+Type: `Array`, Default: `[]`
 
 <pre>
 grunt.initConfig({
