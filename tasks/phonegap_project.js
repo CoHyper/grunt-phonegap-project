@@ -35,15 +35,12 @@ module.exports = function(grunt) {
             });
 
 
-        function getMessages(name) {
+        function getMessage(name) {
             var message = {
                 // alphabetic order
-                buildAllPlatforms: 'we build all app platform(s), please wait ...',
-                fileNotExists: 'file not exists: ',
-                firstCreateAnApp: 'please first create an app',
-                noAndroidInstalled: 'Platform Android is not installed',
-                noDataFound: 'no data found',
-                waitOnCordova: 'wait till cordova have create all files'
+                buildAllPlatforms: 'We build all app platform(s), please wait ...',
+                firstCreateAnApp: 'Please first create an app',
+                noAndroidInstalled: 'Platform Android is not installed'
             };
             return message[name] || name;
         }
@@ -76,7 +73,7 @@ module.exports = function(grunt) {
 
             } else {
                 // normally never goes here
-                grunt.log.warn(getMessages('noAndroidInstalled'));
+                grunt.log.warn(getMessage('noAndroidInstalled'));
                 done(false);
             }
         }
@@ -90,7 +87,7 @@ module.exports = function(grunt) {
 
                 var items = data.platforms;
 
-                grunt.log.ok(getMessages('buildAllPlatforms'));
+                grunt.log.ok(getMessage('buildAllPlatforms'));
 
                 items.forEach(function(platform) {
                     grunt.util.spawn({
@@ -106,7 +103,7 @@ module.exports = function(grunt) {
                     }, onCompleted);
                 });
             } else {
-                grunt.log.warn(getMessages('firstCreateAnApp'));
+                grunt.log.warn(getMessage('firstCreateAnApp'));
                 done(false);
             }
         }
