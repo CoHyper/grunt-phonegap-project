@@ -87,6 +87,8 @@ module.exports = function(grunt) {
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);
 
+    // All "phonegap_project" tasks
+    grunt.registerTask('project', ['phonegap_project']);
     grunt.registerTask('create', ['phonegap_project:create']);
     grunt.registerTask('build', ['phonegap_project:build']);
 
