@@ -1,6 +1,6 @@
 {
   "name": "grunt-phonegap-project",
-  "description": "Create a Phonegap Application with platforms, plugins, androidMinSdk and androidTargetSdk.",
+  "description": "Create a Phonegap Application with config folder, platforms, plugins, androidMinSdk and androidTargetSdk.",
   "version": "0.1.1",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
