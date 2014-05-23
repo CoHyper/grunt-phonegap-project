@@ -104,7 +104,6 @@ module.exports = function(grunt) {
                 });
             } else {
                 grunt.log.warn(getMessage('firstCreateAnApp'));
-                done(false);
             }
         }
 
