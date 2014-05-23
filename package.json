@@ -24,7 +24,9 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "create": "grunt 'phonegap_project:create'",
+    "build": "grunt 'phonegap_project:build'"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
