@@ -8,6 +8,7 @@
 
 'use strict';
 
+
 module.exports = function(grunt) {
 
     function getPlatforms() {
@@ -104,13 +105,12 @@ module.exports = function(grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'phonegap_project', 'nodeunit']);
+    grunt.registerTask('test', ['clean', 'phonegap_project:create', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);
 
     // All "phonegap_project" tasks
-    grunt.registerTask('project', ['phonegap_project']);
     grunt.registerTask('create', ['phonegap_project:create']);
     grunt.registerTask('build', ['phonegap_project:build']);
 
