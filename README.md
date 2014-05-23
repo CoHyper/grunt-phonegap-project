@@ -53,15 +53,16 @@ WARNING: This task delete folder of `options.path`.
 Type: `String`, Default: `MyyApp`
 
 * `bundleId`<br />
-Type: `String`, Default: `de.myylinks.myyapp`
+Type: `String`, Default: `de.myylinks.myyapp`<br />
+Unique identifier Package name for all Android Apps.
 
 * `platforms`<br />
-Type: `Array`<br />
-install directly with cordova command.
+Type: `Array`, Default: `[]`<br />
+Install directly with cordova command.
 
 * `plugins`<br />
-Type: `Array`<br />
-install directly with cordova command.
+Type: `Array`, Default: `[]`
+Install directly with cordova command.
 
 <pre>
 grunt.initConfig({
@@ -87,7 +88,7 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 
 #### build
 * platforms<br />
-Type: `Array`
+Type: `Array`, Default: []
 
 <pre>
 grunt.initConfig({
@@ -147,9 +148,8 @@ Licensed under the MIT license.
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
-* add some tests
-* bugfix grunt
-* add build script
+* bugfix some grunt functions
+* add travis script
 
 ##### 2014-05-22 v0.1.1
 * clean project for public
