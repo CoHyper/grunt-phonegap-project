@@ -10,6 +10,5 @@ before_script:
   - "npm install cordova -g"
 script:
   - "grunt test"
-  - "grunt phonegap_project"
   - "grunt phonegap_project:create"
   - "grunt phonegap_project:build"
