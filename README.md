@@ -7,22 +7,22 @@
 [![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
 
 ## Getting Started
-This plugin requires Grunt `~0.4.4`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
+#### Platform SDK
+To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
+#### GruntJS
+This plugin requires [Grunt](http://gruntjs.com) `~0.4.4`
+
+If you haven't used Grunt before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
 <pre>
 $ npm install grunt-phonegap-project --save-dev
 </pre>
 
 It may be enabled inside your Gruntfile with this line of JavaScript:
-
 <pre>
 grunt.loadNpmTasks('grunt-phonegap-project');
 </pre>
-
-## The "phonegap_project" Require
-To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
 #### cordova
 <pre>
@@ -142,8 +142,14 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ## Release History
 
+##### 2014-05-24 v0.1.3
+* update readme
+* TODO : add codova web server
+* TODO : readme-generator
+* add lodash
+
 ##### 2014-05-23 v0.1.2
-* update readme.md
+* update readme
 * bugfix some grunt functions
 * add travis
 
