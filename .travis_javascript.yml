@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "0.11"
+  - "0.10"
+  - "0.8"
+before_install:
+  - "npm install -g grunt-cli"
+  - "sudo npm cache clean -g"
+install:
+  - "npm install"
+before_script:
+  - "npm install cordova -g"
+script:
+  - "grunt test"
+  - "grunt phonegap_project"
+  - "grunt phonegap_project:create"
+  - "grunt phonegap_project:build"
