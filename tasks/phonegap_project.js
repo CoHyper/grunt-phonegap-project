@@ -75,6 +75,7 @@ module.exports = function(grunt) {
                 }
 
             } else {
+                // normally never goes here
                 grunt.log.warn(getMessages('noAndroidInstalled'));
                 done(false);
             }
@@ -86,25 +87,24 @@ module.exports = function(grunt) {
 
             // check if app exists
             if (grunt.file.exists(options.path)) {
-                var i = 0,
-                    items = data.platforms,
-                    length = items.length || 0;
+
+                var items = data.platforms;
 
                 grunt.log.ok(getMessages('buildAllPlatforms'));
 
-                for (i; i < length; i++) {
+                items.forEach(function(platform) {
                     grunt.util.spawn({
                         // cordova build <platform>
                         cmd: 'cordova',
                         args: [
                             'build',
-                            items[i]
+                            platform
                         ],
                         opts: {
                             cwd: options.path
                         }
                     }, onCompleted);
-                }
+                });
             } else {
                 grunt.log.warn(getMessages('firstCreateAnApp'));
                 done(false);
@@ -116,8 +116,10 @@ module.exports = function(grunt) {
             data = data ? data : done(false);
 
             // clean old app
-            grunt.file.delete(options.path, {force: true});
-            grunt.file.mkdir(options.path);
+            if (grunt.file.isDir(options.path)) {
+                grunt.file.delete(options.path, {force: true});
+                grunt.file.mkdir(options.path);
+            }
 
             // create new app
             grunt.util.spawn({
@@ -130,7 +132,6 @@ module.exports = function(grunt) {
                     (data.title || options.title)
                 ]
             }, function(error, result, code) {
-
                 if (code) {
                     grunt.log.warn(code);
                     grunt.log.warn(result);
@@ -150,12 +151,8 @@ module.exports = function(grunt) {
         function addPlatforms(data) {
             data = data ? data : done(false);
 
-            var i = 0,
-                length = data.length || 0;
-
-            for (i; i < length; i++) {
-
-                if (data[i] === 'android') {
+            data.forEach(function(platform) {
+                if (platform === 'android') {
                     // check for android SDK
                     isAndroidPlatformAdded = true;
                 }
@@ -166,7 +163,7 @@ module.exports = function(grunt) {
                     args: [
                         'platform',
                         'add',
-                        data[i]
+                        platform
                     ],
                     opts: {
                         cwd: options.path
@@ -186,30 +183,27 @@ module.exports = function(grunt) {
                         }
                     }
                 });
-            }
+            });
         }
 
 
         function addPlugins(data) {
             data = data ? data : done(false);
 
-            var i = 0,
-                length = data.length || 0;
-
-            for (i; i < length; i++) {
+            data.forEach(function(plugin) {
                 grunt.util.spawn({
                     // cordova plugin add <plugin>
                     cmd: 'cordova',
                     args: [
                         'plugin',
                         'add',
-                        data[i]
+                        plugin
                     ],
                     opts: {
                         cwd: options.path
                     }
                 }, onCompleted);
-            }
+            });
         }
 
 
