@@ -1,5 +1,5 @@
 # grunt-phonegap-project
-> Create a [Phonegap](http://www.phonegap.com) Application with config folder, bundleId, platforms, plugins, androidMinSdk and androidTargetSdk.
+> Create a [Phonegap](http://www.phonegap.com) Application with config folder, bundleId, platforms, plugins, androidMinSdk or androidTargetSdk.
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
 [![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies) [![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
@@ -140,16 +140,12 @@ grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 </pre>
 
-## License
-Copyright (c) 2014 svenlang<br />
-Licensed under the MIT license.
-
 ## Release History
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
 * bugfix some grunt functions
-* add travis script
+* add travis
 
 ##### 2014-05-22 v0.1.1
 * clean project for public
@@ -160,3 +156,7 @@ Licensed under the MIT license.
 * cordova platform add -platform-
 * cordova plugin add -plugin-
 * cordova build -platform-
+
+## License
+Copyright (c) 2014 svenlang<br />
+Licensed under the MIT license.
