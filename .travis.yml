@@ -1,15 +1,3 @@
-# ANDROID
-language: android
-android:
-  components:
-    - "build-tools-19.0.3"
-    - "android-19"
-    - "sysimg-19"
-    - "extra-android-support"
-  licenses:
-    - "android-sdk-license-bcbbd656"
-    - ".*intel.+"
-
 # NODE
 language: node_js
 node_js:
@@ -18,7 +6,18 @@ node_js:
   - "0.8"
 before_install:
   - "npm install -g grunt-cli"
-  - "npm cache clean -g"
+  - "sudo npm cache clean -g"
+  # ANDROID
+  language: android
+  android:
+    components:
+      - "build-tools-19.0.3"
+      - "android-19"
+      - "sysimg-19"
+      - "extra-android-support"
+    licenses:
+      - "android-sdk-license-bcbbd656"
+      - ".*intel.+"
 install:
   - "npm install"
 before_script:
