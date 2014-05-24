@@ -10,15 +10,43 @@
 
 module.exports = function(grunt) {
 
-    function getPlatforms() {
-        // Travis cant install with javascript iOS and/or Android SDK
-        // so local can test without any changed
-        var platforms = [
-            'ios',
-            'android'
-        ];
+    // local testing & travis testing without any changed
+    function getTaskValues() {
         // TODO : perhaps other solution
-        return grunt.file.isFile("../grunt_debug.js") ? platforms : [];
+        var development = grunt.file.isFile("../grunt_dummy.js");
+        return {
+            status: development ? 'development' : '',
+            // Travis no supported multilanguage, (cant install with javascript iOS and/or Android SDK)
+            platforms: development ? ['ios', 'android'] : [],
+            plugins: development ? ["org.apache.cordova.device"] : [
+                // add all cordova plugins, for testing with travis
+                "org.apache.cordova.battery-status",
+                "org.apache.cordova.camera",
+                "org.apache.cordova.console",
+                "org.apache.cordova.contacts",
+                "org.apache.cordova.device",
+                "org.apache.cordova.device-motion",
+                "org.apache.cordova.device-orientation",
+                "org.apache.cordova.dialogs",
+                "org.apache.cordova.file",
+                "org.apache.cordova.file-transfer",
+                "org.apache.cordova.geolocation",
+                "org.apache.cordova.globalization",
+                "org.apache.cordova.inappbrowser",
+                "org.apache.cordova.media",
+                "org.apache.cordova.media-capture",
+                "org.apache.cordova.network-information",
+                "org.apache.cordova.splashscreen",
+                "org.apache.cordova.vibration"
+            ]
+        };
+    }
+
+    var status = getTaskValues().status;
+    if (status) {
+        grunt.log.ok('##################');
+        grunt.log.ok(('status ' + status).toUpperCase());
+        grunt.log.ok('##################');
     }
 
     // Project configuration.
@@ -46,44 +74,30 @@ module.exports = function(grunt) {
 
         // Before generating any new files, remove any previously-created files.
         clean: {
-            tests: ['tmp', 'myyapp']
+            tests: [
+                'tmp',
+                // default folder
+                'phoneGapProject',
+                // settings folder
+                'newapp'
+            ]
         },
 
         // Configuration to be run (and then tested).
         phonegap_project: {
             options: {
-                path: 'myyapp',
-                androidMinSdk: 10,
-                androidTargetSdk: 19
+                path: 'newapp',
+                androidMinSdk: 20,
+                androidTargetSdk: 30
             },
             create: {
-                title: 'MyyApp',
-                bundleId: 'de.myylinks.myyapp',
-                platforms: getPlatforms(),
-                plugins: [
-                    // add all cordova plugins, for testing with travis
-                    "org.apache.cordova.battery-status",
-                    "org.apache.cordova.camera",
-                    "org.apache.cordova.console",
-                    "org.apache.cordova.contacts",
-                    "org.apache.cordova.device",
-                    "org.apache.cordova.device-motion",
-                    "org.apache.cordova.device-orientation",
-                    "org.apache.cordova.dialogs",
-                    "org.apache.cordova.file",
-                    "org.apache.cordova.file-transfer",
-                    "org.apache.cordova.geolocation",
-                    "org.apache.cordova.globalization",
-                    "org.apache.cordova.inappbrowser",
-                    "org.apache.cordova.media",
-                    "org.apache.cordova.media-capture",
-                    "org.apache.cordova.network-information",
-                    "org.apache.cordova.splashscreen",
-                    "org.apache.cordova.vibration"
-                ]
+                title: 'NewApp',
+                bundleId: 'de.myylinks.newapp',
+                platforms: getTaskValues().platforms,
+                plugins: getTaskValues().plugins
             },
             build: {
-                platforms: getPlatforms()
+                platforms: getTaskValues().platforms
             }
         },
 
@@ -110,8 +124,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'test']);
 
     // All "phonegap_project" tasks
-    grunt.registerTask('project', ['phonegap_project']);
-    grunt.registerTask('create', ['phonegap_project:create']);
-    grunt.registerTask('build', ['phonegap_project:build']);
+    grunt.registerTask('1 create new App', ['phonegap_project:create']);
+    grunt.registerTask('2 build App', ['phonegap_project:build']);
 
 };
