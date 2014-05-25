@@ -152,7 +152,6 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * add deleteOptionsPath
 
 ##### 2014-05-23 v0.1.2
-
 * update readme.md
 * bugfix some grunt functions
 * add travis
