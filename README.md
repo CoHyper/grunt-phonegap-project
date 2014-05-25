@@ -151,7 +151,6 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * add lodash
 * add deleteOptionsPath
 
-
 ##### 2014-05-23 v0.1.2
 * update readme.md
 * bugfix some grunt functions
