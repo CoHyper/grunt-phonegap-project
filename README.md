@@ -63,13 +63,15 @@ Type: `Array`, Default: `[]`
 Install directly with cordova command.
 
 * `deleteOptionsPath`<br />
-Type: `Boolean`, Default: `false`
-Add to `v0.1.3`. For create a new app need a empty folder. WARNING: This task delete folder of `options.path`.
+Type: `Boolean`, Default: `true`
+Add to `v0.1.3`. For create a new app need a empty folder. WARNING: This variable delete folder of `options.path`.
 
 <pre>
 grunt.initConfig({
   phonegap_project: {
-  options: {},
+    options: {
+      path:'MyyApp'
+    },
     create: {
       deleteOptionsPath: true,
       title: 'MyyApp',

@@ -23,6 +23,7 @@ module.exports = function(grunt) {
 
         var UNDEFINED_ANDROID_MIN_SDK = -1,
             UNDEFINED_ANDROID_TARGET_SDK = -1,
+            DEFAULT_DELETE_OPTION_PATH = true,
             done = this.async(),
             isAndroidPlatformAdded = false,
             fileAndroidManifest = '/platforms/android/AndroidManifest.xml',
@@ -112,7 +113,7 @@ module.exports = function(grunt) {
         function create(data) {
             data = data ? data : done(false);
 
-            var isUserRmDir = data.deleteOptionsPath;
+            var isUserRmDir = data.deleteOptionsPath || DEFAULT_DELETE_OPTION_PATH;
 
             if (!_.isBoolean(isUserRmDir)) {
                 grunt.log.warn(getMessage('valueDeleteOptionsPathError'));
