@@ -71,6 +71,7 @@ grunt.initConfig({
   phonegap_project: {
   options: {},
     create: {
+      deleteOptionsPath: true,
       title: 'MyyApp',
       bundleId: 'de.myylinks.myyapp',
       platforms: [
@@ -113,11 +114,12 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 grunt.initConfig({
   phonegap_project: {
     options: {
-      path: 'phoneGapProject',
+      path: 'myyApp',
       androidMinSdk: 10,
       androidTargetSdk: 19
     },
     create: {
+      deleteOptionsPath: true,
       title: 'MyyApp',
       bundleId: 'de.myylinks.myyapp',
       platforms: [
