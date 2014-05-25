@@ -11,6 +11,7 @@
  */
 
 
+var _ = require('lodash');
 
 module.exports = function(grunt) {
 
@@ -37,44 +38,40 @@ module.exports = function(grunt) {
 
         function getMessage(name) {
             var message = {
-                // alphabetic order
                 buildPlatform: 'Please Wait, we build App Platform: ',
-                firstCreateAnApp: 'Please first create an App',
-                noAndroidInstalled: 'Platform Android is not installed'
+                pathNoExists: 'The path no exists: ',
+                valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
             };
-            return message[name] || name;
+            return '# ' + message[name] || name;
         }
 
 
         function replaceAndroidSdk() {
-
             var filePath = options.path + fileAndroidManifest,
-                fileSource = '',
+                fileSource = grunt.file.read(filePath),
+                fileReplace = '',
                 isFileChanged = false,
                 minSdkExp = /minSdkVersion\=\"[0-9]+\"/,
                 targetSdkExp = /targetSdkVersion\=\"[0-9]+\"/;
 
-            if (grunt.file.exists(filePath) && grunt.file.isFile(filePath)) {
-                // search 'android:minSdkVersion="xx"' && 'android:targetSdkVersion="xx"'
-                fileSource = grunt.file.read(filePath);
+            // check filePath is exists already in addPlatforms()
 
-                if (fileSource.match(minSdkExp) && options.androidMinSdk !== UNDEFINED_ANDROID_MIN_SDK) {
-                    grunt.file.write(filePath, fileSource.replace(minSdkExp, 'minSdkVersion="' + options.androidMinSdk + '"'));
-                    isFileChanged = true;
+            // search 'android:minSdkVersion="xx"'
+            if (fileSource.match(minSdkExp) && options.androidMinSdk !== UNDEFINED_ANDROID_MIN_SDK) {
+                fileReplace = 'minSdkVersion="' + options.androidMinSdk + '"';
+                grunt.file.write(filePath, fileSource.replace(minSdkExp, fileReplace));
+                isFileChanged = true;
+            }
+
+            // search 'android:targetSdkVersion="xx"'
+            if (fileSource.match(targetSdkExp) && options.androidTargetSdk !== UNDEFINED_ANDROID_TARGET_SDK) {
+                fileReplace = 'targetSdkVersion="' + options.androidTargetSdk + '"';
+
+                // read fileSource again
+                if (isFileChanged) {
+                    fileSource = grunt.file.read(filePath);
                 }
-
-                if (fileSource.match(targetSdkExp) && options.androidTargetSdk !== UNDEFINED_ANDROID_TARGET_SDK) {
-
-                    // read fileSource again
-                    if (isFileChanged) {
-                        fileSource = grunt.file.read(filePath);
-                    }
-                    grunt.file.write(filePath, fileSource.replace(targetSdkExp, 'targetSdkVersion="' + options.androidTargetSdk + '"'));
-                }
-
-            } else {
-                // normally never goes here
-                grunt.log.warn(getMessage('noAndroidInstalled'));
+                grunt.file.write(filePath, fileSource.replace(targetSdkExp, fileReplace));
             }
         }
 
@@ -107,7 +104,7 @@ module.exports = function(grunt) {
                     }
                 });
             } else {
-                grunt.log.warn(getMessage('firstCreateAnApp'));
+                grunt.log.warn(getMessage('pathNoExists') + options.path);
             }
         }
 
@@ -115,11 +112,21 @@ module.exports = function(grunt) {
         function create(data) {
             data = data ? data : done(false);
 
-            // delete old app & create new folder
-            if (grunt.file.isDir(options.path)) {
-                grunt.file.delete(options.path, {force: true});
-                grunt.file.mkdir(options.path);
+            var isUserRmDir = data.deleteOptionsPath;
+
+            if (!_.isBoolean(isUserRmDir)) {
+                grunt.log.warn(getMessage('valueDeleteOptionsPathError'));
+                done(false);
             }
+
+            // delete old app
+            if (grunt.file.exists(options.path) && isUserRmDir) {
+                grunt.file.delete(options.path, {force: true});
+            }
+
+            // create new folder
+            // BUGFIX: "cordova platform" need an exist folder
+            grunt.file.mkdir(options.path);
 
             // cordova create <folder> <bundleid> <title>
             grunt.util.spawn({
@@ -178,7 +185,7 @@ module.exports = function(grunt) {
                     } else {
                         grunt.log.ok(result.stdout);
 
-                        if (isAndroidPlatformAdded && grunt.file.exists(options.path + '/' + fileAndroidManifest)) {
+                        if (isAndroidPlatformAdded && grunt.file.isFile(options.path + '/' + fileAndroidManifest)) {
                             replaceAndroidSdk();
                         }
                     }
