@@ -10,43 +10,20 @@
 
 module.exports = function(grunt) {
 
-    // local testing & travis testing without any changed
+    // local and travis testing without any changed
     function getTaskValues() {
         // TODO : perhaps other solution
         // check if file local exists
-        var isDummy = grunt.file.isFile('../grunt_dummy.js');
-        return {
-            dummy: isDummy,
-            // Travis no supported multilanguage, (cant install with javascript iOS and/or Android SDK)
-            platforms: isDummy ? ['ios', 'android'] : [],
-            plugins: isDummy ? ["org.apache.cordova.device"] : [
-                // add all cordova plugins, for testing with travis
-                "org.apache.cordova.battery-status",
-                "org.apache.cordova.camera",
-                "org.apache.cordova.console",
-                "org.apache.cordova.contacts",
-                "org.apache.cordova.device",
-                "org.apache.cordova.device-motion",
-                "org.apache.cordova.device-orientation",
-                "org.apache.cordova.dialogs",
-                "org.apache.cordova.file",
-                "org.apache.cordova.file-transfer",
-                "org.apache.cordova.geolocation",
-                "org.apache.cordova.globalization",
-                "org.apache.cordova.inappbrowser",
-                "org.apache.cordova.media",
-                "org.apache.cordova.media-capture",
-                "org.apache.cordova.network-information",
-                "org.apache.cordova.splashscreen",
-                "org.apache.cordova.vibration"
-            ]
-        };
-    }
-
-    if (getTaskValues().dummy) {
-        grunt.log.ok('########################');
-        grunt.log.ok('# STATUS "DEVELOPMENT" #');
-        grunt.log.ok('########################');
+        var jsonFile;
+        if (grunt.file.isFile('../grunt_dummy.js')) {
+            grunt.log.ok('########################');
+            grunt.log.ok('# STATUS "DEVELOPMENT" #');
+            grunt.log.ok('########################');
+            jsonFile = 'tasks/options/options_development.json';
+        } else {
+            jsonFile = 'tasks/options/options_production.json';
+        }
+        return grunt.file.readJSON(jsonFile);
     }
 
     // Project configuration.
