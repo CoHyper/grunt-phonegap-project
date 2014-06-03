@@ -44,9 +44,9 @@ module.exports = function(grunt) {
     }
 
     if (getTaskValues().dummy) {
-        grunt.log.ok('####################');
-        grunt.log.ok('STATUS "DEVELOPMENT"');
-        grunt.log.ok('####################');
+        grunt.log.ok('########################');
+        grunt.log.ok('# STATUS "DEVELOPMENT" #');
+        grunt.log.ok('########################');
     }
 
     // Project configuration.
@@ -75,11 +75,10 @@ module.exports = function(grunt) {
         // Before generating any new files, remove any previously-created files.
         clean: {
             tests: [
-                'tmp',
                 // default folder
                 'phoneGapProject',
                 // settings folder
-                'newapp'
+                'myyApp'
             ]
         },
 
