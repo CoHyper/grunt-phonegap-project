@@ -38,9 +38,13 @@ module.exports = function(grunt) {
 
 
         /**
+         * Gets a specific string message
+         *
          * @method getMessage
-         * @param name {String}
-         * @returns {*}
+         * @param name {String} The key of the message to get
+         * @returns {String} The message if exist or empty String
+         * @example
+         *      getMessage("buildPlatform");
          */
         function getMessage(name) {
             name = _.isString(name) ? name : false;
@@ -56,6 +60,11 @@ module.exports = function(grunt) {
         }
 
 
+        /**
+         * This replace "androidMinsSdk" and "androidTargetSdk", when installed Android and exists "AndroidManifest.xml"
+         *
+         * @method replaceAndroidSdk
+         */
         function replaceAndroidSdk() {
             var filePath = options.path + fileAndroidManifest,
                 fileSource = grunt.file.read(filePath),
@@ -86,6 +95,12 @@ module.exports = function(grunt) {
         }
 
 
+        /**
+         * Running "cordova build <platform>" for each platform
+         *
+         * @method build
+         * @param data {Object}
+         */
         function build(data) {
             data = _.isObject(data) ? data : done(false);
 
@@ -119,6 +134,12 @@ module.exports = function(grunt) {
         }
 
 
+        /**
+         * Running "cordova create <path> <bundleid> <title"
+         *
+         * @method create
+         * @param data {Object} The Object to create a new App
+         */
         function create(data) {
             data = _.isObject(data) ? data : done(false);
 
@@ -164,6 +185,12 @@ module.exports = function(grunt) {
         }
 
 
+        /**
+         * Running "cordova platform add <platform>"
+         *
+         * @method addPlatforms
+         * @param data {Array}
+         */
         function addPlatforms(data) {
             data = _.isArray(data) ? data : done(false);
 
@@ -204,6 +231,10 @@ module.exports = function(grunt) {
         }
 
 
+        /**
+         * @method addPlugins
+         * @param data {Array}
+         */
         function addPlugins(data) {
             data = _.isArray(data) ? data : done(false);
 
