@@ -37,13 +37,22 @@ module.exports = function(grunt) {
             });
 
 
+        /**
+         * @method getMessage
+         * @param name {String}
+         * @returns {*}
+         */
         function getMessage(name) {
-            var message = {
-                buildPlatform: 'Please Wait, we build App Platform: ',
-                pathNoExists: 'The path no exists: ',
-                valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
-            };
-            return '# ' + message[name] || name;
+            name = _.isString(name) ? name : false;
+            if (name) {
+                var message = {
+                    buildPlatform: 'Please wait, we build App Platform: ',
+                    pathNoExists: 'The path no exists: ',
+                    valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
+                };
+                return message[name];
+            }
+            return '';
         }
 
 
@@ -78,7 +87,7 @@ module.exports = function(grunt) {
 
 
         function build(data) {
-            data = data ? data : done(false);
+            data = _.isObject(data) ? data : done(false);
 
             var items = data.platforms;
 
@@ -111,7 +120,7 @@ module.exports = function(grunt) {
 
 
         function create(data) {
-            data = data ? data : done(false);
+            data = _.isObject(data) ? data : done(false);
 
             var isUserRmDir = data.deleteOptionsPath || DEFAULT_DELETE_OPTION_PATH;
 
@@ -156,7 +165,7 @@ module.exports = function(grunt) {
 
 
         function addPlatforms(data) {
-            data = data ? data : done(false);
+            data = _.isArray(data) ? data : done(false);
 
             data.forEach(function(platform) {
 
@@ -196,7 +205,7 @@ module.exports = function(grunt) {
 
 
         function addPlugins(data) {
-            data = data ? data : done(false);
+            data = _.isArray(data) ? data : done(false);
 
             data.forEach(function(plugin) {
 
