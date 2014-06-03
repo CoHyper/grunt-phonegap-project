@@ -1,7 +1,5 @@
 {
-    // Travis no supported multilanguage, (cant install iOS and/or Android SDK)
     "platforms": [],
-    // add all cordova plugins, for testing with travis
     "plugins": [
         "org.apache.cordova.battery-status",
         "org.apache.cordova.camera",
