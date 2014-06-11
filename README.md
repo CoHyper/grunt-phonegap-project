@@ -7,7 +7,7 @@
 [![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
 
 ## Getting Started
-This plugin requires Grunt `~0.4.4`
+This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
 
@@ -24,7 +24,7 @@ grunt.loadNpmTasks('grunt-phonegap-project');
 ## The "phonegap_project" Require
 To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
-#### cordova
+#### Cordova
 <pre>
 $ npm install cordova -g
 </pre>
@@ -64,7 +64,8 @@ Install directly with cordova command.
 
 * `deleteOptionsPath`<br />
 Type: `Boolean`, Default: `true`
-Add to `v0.1.3`. For create a new app need a empty folder. WARNING: This variable delete folder of `options.path`.
+Add to `v0.1.3`. For create a new app need a empty folder.<br />
+WARNING: This variable delete folder of `options.path`.
 
 <pre>
 grunt.initConfig({
@@ -148,10 +149,12 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ## Release History
 
-##### 2014-05-23 v0.1.3
+##### 2014-06-11 v0.1.3
 * update readme.md
 * add lodash
-* add deleteOptionsPath
+* add new variable deleteOptionsPath
+* add debug comments
+* update grunt to 0.4.5
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
