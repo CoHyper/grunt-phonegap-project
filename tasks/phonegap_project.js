@@ -73,24 +73,26 @@ module.exports = function(grunt) {
                 minSdkExp = /minSdkVersion\=\"[0-9]+\"/,
                 targetSdkExp = /targetSdkVersion\=\"[0-9]+\"/;
 
-            // check filePath is exists already in addPlatforms()
+            // check filePath is exists, already check in addPlatforms(), but check again
+            if (grunt.file.isFile(options.path + '/' + fileAndroidManifest)) {
 
-            // search 'android:minSdkVersion="xx"'
-            if (fileSource.match(minSdkExp) && options.androidMinSdk !== UNDEFINED_ANDROID_MIN_SDK) {
-                fileReplace = 'minSdkVersion="' + options.androidMinSdk + '"';
-                grunt.file.write(filePath, fileSource.replace(minSdkExp, fileReplace));
-                isFileChanged = true;
-            }
-
-            // search 'android:targetSdkVersion="xx"'
-            if (fileSource.match(targetSdkExp) && options.androidTargetSdk !== UNDEFINED_ANDROID_TARGET_SDK) {
-                fileReplace = 'targetSdkVersion="' + options.androidTargetSdk + '"';
-
-                // read fileSource again
-                if (isFileChanged) {
-                    fileSource = grunt.file.read(filePath);
+                // search 'android:minSdkVersion="xx"'
+                if (fileSource.match(minSdkExp) && options.androidMinSdk !== UNDEFINED_ANDROID_MIN_SDK) {
+                    fileReplace = 'minSdkVersion="' + options.androidMinSdk + '"';
+                    grunt.file.write(filePath, fileSource.replace(minSdkExp, fileReplace));
+                    isFileChanged = true;
                 }
-                grunt.file.write(filePath, fileSource.replace(targetSdkExp, fileReplace));
+
+                // search 'android:targetSdkVersion="xx"'
+                if (fileSource.match(targetSdkExp) && options.androidTargetSdk !== UNDEFINED_ANDROID_TARGET_SDK) {
+                    fileReplace = 'targetSdkVersion="' + options.androidTargetSdk + '"';
+
+                    // read fileSource again
+                    if (isFileChanged) {
+                        fileSource = grunt.file.read(filePath);
+                    }
+                    grunt.file.write(filePath, fileSource.replace(targetSdkExp, fileReplace));
+                }
             }
         }
 
