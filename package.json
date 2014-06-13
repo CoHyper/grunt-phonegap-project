@@ -51,7 +51,9 @@
     "create",
     "build",
     "plugin",
-    "platform"
+    "platform",
+    "version",
+    "access"
   ],
   "dependencies": {
     "lodash": "^2.4.1"
