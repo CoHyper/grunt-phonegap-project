@@ -21,10 +21,10 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('phonegap_project', 'Build a Phonegap application.', function() {
 
-        var UNDEFINED_ANDROID_MIN_SDK = -1,
+        var done = this.async(),
+            UNDEFINED_ANDROID_MIN_SDK = -1,
             UNDEFINED_ANDROID_TARGET_SDK = -1,
             DEFAULT_DELETE_OPTION_PATH = true,
-            done = this.async(),
             isAndroidPlatformAdded = false,
             fileAndroidManifest = '/platforms/android/AndroidManifest.xml',
             options = this.options({
@@ -57,6 +57,47 @@ module.exports = function(grunt) {
                 return message[name];
             }
             return '';
+        }
+
+
+        /**
+         * Edit the config.xml with user settings
+         *
+         * @method editConfigXml
+         * @param data {Object} The Object to config the xml file
+         */
+        function editConfigXml(data) {
+            data = _.isObject(data) ? data : done(false);
+            var dataVersion = _.isString(data.version) ? data.version : false,
+                dataAccess = _.isArray(data.access) ? data.access : false,
+                file = options.path + '/config.xml',
+                fileSource,
+                versionExp = /version\=\"[0-9\.]+"/,
+                defaultAccessExp = /<access\ origin\=\"\*\"\ \/\>/,
+                lastTagExp = /<\/widget\>/;
+
+            if (grunt.file.isFile(file)) {
+
+                if (dataVersion) {
+                    fileSource = grunt.file.read(file);
+                    grunt.file.write(file, fileSource.replace(versionExp, 'version="' + dataVersion + '"'));
+                }
+
+                if (dataAccess) {
+                    dataAccess.forEach(function(url, index) {
+
+                        // delete default access
+                        if (index === 0) {
+                            fileSource = grunt.file.read(file);
+                            grunt.file.write(file, fileSource.replace(defaultAccessExp, ''));
+                        }
+
+                        // create access
+                        fileSource = grunt.file.read(file);
+                        grunt.file.write(file, fileSource.replace(lastTagExp, '<access origin="' + url + '" />\n</widget>'));
+                    });
+                }
+            }
         }
 
 
@@ -182,6 +223,8 @@ module.exports = function(grunt) {
                     addPlatforms(data.platforms);
 
                     addPlugins(data.plugins);
+
+                    editConfigXml(data);
                 }
             });
         }
