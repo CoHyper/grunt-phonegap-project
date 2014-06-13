@@ -46,6 +46,7 @@
     "androidMinSdk",
     "androidTargetSdk",
     "folder",
+    "path",
     "bundleId",
     "create",
     "build",
