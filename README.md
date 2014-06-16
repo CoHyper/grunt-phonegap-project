@@ -63,9 +63,17 @@ Type: `Array`, Default: `[]`
 Install directly with cordova command.
 
 * `deleteOptionsPath`<br />
-Type: `Boolean`, Default: `true`
-Add to `v0.1.3`. For create a new app need a empty folder.<br />
-WARNING: This variable delete folder of `options.path`.
+Type: `Boolean`, Default: `false`<br />
+<b>Info:</b> For create a new app need a empty folder.<br />
+<b>WARNING:</b> If `true` they are delete folder of `options.path`.
+
+* `version`<br />
+Type: `String`<br />
+
+* `access`<br />
+Type `Array`<br />
+// TODO :elements define the set of external domains the app is allowed to communicate with. The default value shown above allows it to access any server. See the Domain Whitelist Guide for details.
+
 
 <pre>
 grunt.initConfig({
@@ -125,6 +133,11 @@ grunt.initConfig({
       deleteOptionsPath: true,
       title: 'MyyApp',
       bundleId: 'de.myylinks.myyapp',
+      version: "0.1.3",
+      access: [
+        'http://myylinks.de',
+        'http://github.com'
+      ],
       platforms: [
         'ios',
         'android'
@@ -149,12 +162,15 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ## Release History
 
-##### 2014-06-11 v0.1.3
+##### 2014-06-13 v0.1.3
 * update readme.md
 * add lodash
-* add new variable deleteOptionsPath
+* update function create()
+* add new variable deleteOptionsPath in create()
 * add debug comments
 * update grunt to 0.4.5
+* add new variable version in create()
+* add new variable access in create()
 
 ##### 2014-05-23 v0.1.2
 * update readme.md

@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         var done = this.async(),
             UNDEFINED_ANDROID_MIN_SDK = -1,
             UNDEFINED_ANDROID_TARGET_SDK = -1,
-            DEFAULT_DELETE_OPTION_PATH = true,
+            DEFAULT_DELETE_OPTION_PATH = false,
             isAndroidPlatformAdded = false,
             fileAndroidManifest = '/platforms/android/AndroidManifest.xml',
             options = this.options({
@@ -52,6 +52,7 @@ module.exports = function(grunt) {
                 var message = {
                     buildPlatform: 'Please wait, we build App Platform: ',
                     pathNoExists: 'The path no exists: ',
+                    fileNoExists: 'The file no exists: ',
                     valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
                 };
                 return message[name];
@@ -97,6 +98,8 @@ module.exports = function(grunt) {
                         grunt.file.write(file, fileSource.replace(lastTagExp, '<access origin="' + url + '" />\n</widget>'));
                     });
                 }
+            } else {
+                grunt.log.warn(getMessage('fileNoExists') + file);
             }
         }
 
