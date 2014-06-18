@@ -8,26 +8,39 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+var _ = require('lodash');
 
-    // local and travis testing without any changed
+
+module.exports = function(grunt) {
+    grunt = _.isObject(grunt) ? grunt : {};
+
+    /**
+     * Testing local and with Travis without any changes
+     * TODO : perhaps other solution
+     *
+     * @method getTaskValues
+     * @returns {Object}
+     */
     function getTaskValues() {
-        // TODO : perhaps other solution
+        // Travis no supported multilanguage, (cant install iOS and/or Android SDK)
+        // add all cordova plugins, for testing with Travis
+        var jsonFile = 'tasks/options/options_production.json',
+            obj;
+
         // check if file local exists
-        var jsonFile;
         if (grunt.file.isFile('../grunt_dummy.js')) {
             grunt.log.ok('########################');
             grunt.log.ok('# STATUS "DEVELOPMENT" #');
             grunt.log.ok('########################');
             jsonFile = 'tasks/options/options_development.json';
-        } else {
-            jsonFile = 'tasks/options/options_production.json';
         }
-        return grunt.file.readJSON(jsonFile);
+        obj = grunt.file.readJSON(jsonFile);
+        return _.isObject(obj) ? obj : {};
     }
 
     // Project configuration.
     grunt.initConfig({
+
         jshint: {
             all: [
                 'Gruntfile.js',
@@ -59,19 +72,26 @@ module.exports = function(grunt) {
             ]
         },
 
-        // Configuration to be run (and then tested).
+        // Configuration to be run
         phonegap_project: {
             options: {
                 //path: 'newapp',
-                androidMinSdk: 20,
-                androidTargetSdk: 30
+                androidMinSdk: 9,
+                androidTargetSdk: 10,
+                version: "1.2.3" // TODO : add new variables
             },
             create: {
                 title: 'NewApp',
                 bundleId: 'de.myylinks.newapp',
                 platforms: getTaskValues().platforms,
                 plugins: getTaskValues().plugins,
-                deleteOptionsPath: true
+                deleteOptionsPath: true,
+                // TODO : add new variables
+                access: [
+                    "http://myylinks.de",
+                    "http://www.myylinks.de",
+                    "http://www.myylinks.de/"
+                ]
             },
             build: {
                 platforms: getTaskValues().platforms
