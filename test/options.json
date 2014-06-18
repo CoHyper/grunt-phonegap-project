@@ -1,0 +1,26 @@
+{
+    "options": {
+        "path": "myyApp",
+        "androidMinSdk": 10,
+        "androidTargetSdk": 19
+    },
+    "create": {
+        "deleteOptionsPath": true,
+        "title": "MyyApp",
+        "bundleId": "de.myylinks.myyapp",
+        "platforms": [
+            "ios",
+            "android"
+        ],
+        "plugins": [
+            "org.apache.cordova.camera",
+            "org.apache.cordova.battery-status"
+        ]
+    },
+    "build": {
+        "platforms": [
+            "ios",
+            "android"
+        ]
+    }
+}
