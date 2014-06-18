@@ -33,7 +33,8 @@ module.exports = function(grunt) {
                 bundleId: 'de.myylinks.myyapp',
                 path: 'phoneGapProject',
                 androidMinSdk: UNDEFINED_ANDROID_MIN_SDK,
-                androidTargetSdk: UNDEFINED_ANDROID_TARGET_SDK
+                androidTargetSdk: UNDEFINED_ANDROID_TARGET_SDK,
+                version: false
             });
 
 
@@ -69,7 +70,7 @@ module.exports = function(grunt) {
          */
         function editConfigXml(data) {
             data = _.isObject(data) ? data : done(false);
-            var dataVersion = _.isString(data.version) ? data.version : false,
+            var dataVersion = _.isString(options.version) ? options.version : false,
                 dataAccess = _.isArray(data.access) ? data.access : false,
                 file = options.path + '/config.xml',
                 fileSource,
@@ -95,7 +96,7 @@ module.exports = function(grunt) {
 
                         // create access
                         fileSource = grunt.file.read(file);
-                        grunt.file.write(file, fileSource.replace(lastTagExp, '<access origin="' + url + '" />\n</widget>'));
+                        grunt.file.write(file, fileSource.replace(lastTagExp, '\t<access origin="' + url + '" />\n<\/widget>'));
                     });
                 }
             } else {
