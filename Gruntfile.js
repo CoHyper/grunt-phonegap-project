@@ -114,6 +114,7 @@ module.exports = function(grunt) {
 
     // By default, jshint and create new project.
     grunt.registerTask('default', ['clean', 'jshint', 'phonegap_project']);
+    grunt.registerTask('clean files', ['clean']);
 
     // All "phonegap_project" tasks
     grunt.registerTask('1 create new App', ['phonegap_project:create']);
