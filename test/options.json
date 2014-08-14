@@ -2,7 +2,9 @@
     "options": {
         "path": "myyApp",
         "androidMinSdk": 10,
-        "androidTargetSdk": 19
+        "androidTargetSdk": 19,
+        "version": "2.3.4",
+        "copyConfigXml": true
     },
     "create": {
         "deleteOptionsPath": true,

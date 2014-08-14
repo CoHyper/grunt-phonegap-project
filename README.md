@@ -1,5 +1,5 @@
 # grunt-phonegap-project
-> Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms, plugins, androidMinSdk, androidTargetSdk and Version.
+> Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms, plugins, androidMinSdk, androidTargetSdk, version and domains accesses.
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project) 
 [![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies) [![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
@@ -170,15 +170,16 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ## Release History
 
-##### 2014-06-13 v0.1.3
-* update readme.md
-* add new variable copyConfigXml // TODO
+##### 2014-08-14 v0.1.3
 * update grunt to 0.4.5
 * add lodash
 * add new variable deleteOptionsPath
 * add debug comments
 * add new variable version
 * add new variable access
+* add new variable copyConfigXml
+* little bugfixes
+* update readme.md
 
 ##### 2014-05-23 v0.1.2
 * update readme.md
