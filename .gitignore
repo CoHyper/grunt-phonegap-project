@@ -3,11 +3,14 @@ node_modules
 npm-debug.log
 tmp
 
+# WebStorm IDE
+.idea
+
 # test app
 newapp/
 
 # default app
 phoneGapProject/
 
-# WebStorm IDE
-.idea
+# default app
+phoneGapProject/
