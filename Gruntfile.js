@@ -78,7 +78,7 @@ module.exports = function(grunt) {
                 //path: 'newapp',
                 androidMinSdk: 9,
                 androidTargetSdk: 10,
-                version: "1.2.3" // TODO : add new variables
+                version: "1.2.4" // TODO : add new variables
             },
             create: {
                 title: 'NewApp',
@@ -89,8 +89,7 @@ module.exports = function(grunt) {
                 // TODO : add new variables
                 access: [
                     "http://myylinks.de",
-                    "http://www.myylinks.de",
-                    "http://www.myylinks.de/"
+                    "http://www.myylinks.de"
                 ]
             },
             build: {

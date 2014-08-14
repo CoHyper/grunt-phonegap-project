@@ -37,30 +37,28 @@ module.exports = function(grunt) {
                 version: false
             });
 
-
         /**
          * Gets a specific string message
          *
          * @method getMessage
          * @param name {String} The key of the message to get
-         * @returns {String} The message if exist or empty String
+         * @returns {String} Returns the message
          * @example
          *      getMessage("buildPlatform");
          */
         function getMessage(name) {
-            name = _.isString(name) ? name : false;
-            if (name) {
-                var message = {
-                    buildPlatform: 'Please wait, we build App Platform: ',
-                    pathNoExists: 'The path no exists: ',
-                    fileNoExists: 'The file no exists: ',
-                    valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
-                };
-                return message[name];
-            }
-            return '';
-        }
+            name = _.isString(name) ? name : null;
+            // todo add arguments
 
+            var message = {
+                buildPlatform: 'Please wait, we build App Platform: ',
+                pathNoExists: 'The path no exists: ',
+                fileNoExists: 'The file no exists: ',
+                valueDeleteOptionsPathError: 'Check Variable "deleteOptionsPath".'
+            };
+
+            return message[name] || name;
+        }
 
         /**
          * Edit the config.xml with user settings
@@ -70,19 +68,16 @@ module.exports = function(grunt) {
          */
         function editConfigXml(data) {
             data = _.isObject(data) ? data : done(false);
-            var dataVersion = _.isString(options.version) ? options.version : false,
-                dataAccess = _.isArray(data.access) ? data.access : false,
+            var dataVersion = _.isString(options.version) ? options.version : null,
+                dataAccess = _.isArray(data.access) ? data.access : null,
                 file = options.path + '/config.xml',
-                fileSource,
-                versionExp = /version\=\"[0-9\.]+"/,
-                defaultAccessExp = /<access\ origin\=\"\*\"\ \/\>/,
-                lastTagExp = /<\/widget\>/;
+                fileSource;
 
             if (grunt.file.isFile(file)) {
 
                 if (dataVersion) {
                     fileSource = grunt.file.read(file);
-                    grunt.file.write(file, fileSource.replace(versionExp, 'version="' + dataVersion + '"'));
+                    grunt.file.write(file, fileSource.replace(/version\=\"[0-9\.]+"/, 'version="' + dataVersion + '"'));
                 }
 
                 if (dataAccess) {
@@ -91,19 +86,18 @@ module.exports = function(grunt) {
                         // delete default access
                         if (index === 0) {
                             fileSource = grunt.file.read(file);
-                            grunt.file.write(file, fileSource.replace(defaultAccessExp, ''));
+                            grunt.file.write(file, fileSource.replace(/<access\ origin\=\"\*\"\ \/\>/, ''));
                         }
 
-                        // create access
+                        // create new access
                         fileSource = grunt.file.read(file);
-                        grunt.file.write(file, fileSource.replace(lastTagExp, '\t<access origin="' + url + '" />\n<\/widget>'));
+                        grunt.file.write(file, fileSource.replace(/<\/widget\>/, '\t<access origin="' + url + '" />\n<\/widget>'));
                     });
                 }
             } else {
                 grunt.log.warn(getMessage('fileNoExists') + file);
             }
         }
-
 
         /**
          * This replace "androidMinsSdk" and "androidTargetSdk", when installed Android and exists "AndroidManifest.xml"
@@ -140,7 +134,6 @@ module.exports = function(grunt) {
                 }
             }
         }
-
 
         /**
          * Running "cordova build <platform>" for each platform
@@ -179,7 +172,6 @@ module.exports = function(grunt) {
                 grunt.log.warn(getMessage('pathNoExists') + options.path);
             }
         }
-
 
         /**
          * Running "cordova create <path> <bundleid> <title"
@@ -233,7 +225,6 @@ module.exports = function(grunt) {
             });
         }
 
-
         /**
          * Running "cordova platform add <platform>"
          *
@@ -279,7 +270,6 @@ module.exports = function(grunt) {
             });
         }
 
-
         /**
          * @method addPlugins
          * @param data {Array}
@@ -304,7 +294,6 @@ module.exports = function(grunt) {
             });
         }
 
-
         function onCompleted(error, result, code) {
             if (code) {
                 grunt.log.warn(code);
@@ -316,7 +305,6 @@ module.exports = function(grunt) {
                 grunt.log.ok(result.stdout);
             }
         }
-
 
         // console.log(this.target);
         // console.log(this.data);
