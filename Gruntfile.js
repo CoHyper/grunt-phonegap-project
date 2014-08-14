@@ -45,8 +45,7 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js',
-                '<%= nodeunit.tests %>'
+                'tasks/*.js'
             ],
             options: {
                 "curly": true,
@@ -97,13 +96,6 @@ module.exports = function(grunt) {
             build: {
                 platforms: getTaskValues().platforms
             }
-        },
-
-        // Unit tests.
-        nodeunit: {
-            tests: [
-                "test/*_test.js"
-            ]
         }
 
     });
@@ -114,14 +106,9 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-    // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'phonegap_project:create', 'nodeunit']);
 
     // By default, jshint and create new project.
-    grunt.registerTask('default', ['jshint', 'phonegap_project:create']);
+    grunt.registerTask('default', ['clean', 'jshint', 'phonegap_project:create']);
 
     // All "phonegap_project" tasks
     grunt.registerTask('1 create new App', ['phonegap_project:create']);
