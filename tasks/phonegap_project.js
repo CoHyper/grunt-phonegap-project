@@ -24,7 +24,6 @@ module.exports = function(grunt) {
         var done = this.async(),
             UNDEFINED_ANDROID_MIN_SDK = -1,
             UNDEFINED_ANDROID_TARGET_SDK = -1,
-            DEFAULT_DELETE_OPTION_PATH = false,
             isAndroidPlatformAdded = false,
             fileAndroidManifest = '/platforms/android/AndroidManifest.xml',
             options = this.options({
@@ -67,35 +66,51 @@ module.exports = function(grunt) {
          * @param data {Object} The Object to config the xml file
          */
         function editConfigXml(data) {
-            data = _.isObject(data) ? data : done(false);
-            var dataVersion = _.isString(options.version) ? options.version : null,
-                dataAccess = _.isArray(data.access) ? data.access : null,
+            data = _.isObject(data) ? data : {};
+            data.access = _.isArray(data.access) ? data.access : [];
+            options.copyConfigXml = _.isBoolean(options.copyConfigXml) ? options.copyConfigXml : false;
+
+            var dataVersion = _.isString(options.version) && options.version.length > 0 ? options.version : null,
                 file = options.path + '/config.xml',
+                file_www = options.path + '/www/config.xml',
                 fileSource;
 
             if (grunt.file.isFile(file)) {
 
+                // change version
                 if (dataVersion) {
                     fileSource = grunt.file.read(file);
                     grunt.file.write(file, fileSource.replace(/version\=\"[0-9\.]+"/, 'version="' + dataVersion + '"'));
                 }
 
-                if (dataAccess) {
-                    dataAccess.forEach(function(url, index) {
 
-                        // delete default access
-                        if (index === 0) {
-                            fileSource = grunt.file.read(file);
-                            grunt.file.write(file, fileSource.replace(/<access\ origin\=\"\*\"\ \/\>/, ''));
-                        }
+                data.access.forEach(function(url, index) {
 
-                        // create new access
+                    // delete default access
+                    if (index === 0) {
                         fileSource = grunt.file.read(file);
-                        grunt.file.write(file, fileSource.replace(/<\/widget\>/, '\t<access origin="' + url + '" />\n<\/widget>'));
-                    });
+                        grunt.file.write(file, fileSource.replace(/<access\ origin\=\"\*\"\ \/\>/, ''));
+                    }
+
+                    // create new access
+                    fileSource = grunt.file.read(file);
+                    grunt.file.write(file, fileSource.replace(/<\/widget\>/, '\t<access origin="' + url + '" />\n<\/widget>'));
+                });
+
+
+                if (options.copyConfigXml) {
+
+                    // read file
+                    fileSource = grunt.file.read(file);
+                    console.log(fileSource)
+
+                    // copy file
+                    grunt.file.write(file_www, fileSource);
                 }
+
             } else {
                 grunt.log.warn(getMessage('fileNoExists') + file);
+                done(false);
             }
         }
 
@@ -142,30 +157,32 @@ module.exports = function(grunt) {
          * @param data {Object}
          */
         function build(data) {
-            data = _.isObject(data) ? data : done(false);
-
-            var items = data.platforms;
+            data = _.isObject(data) ? data : {};
+            var items = _.isArray(data.platforms) ? data.platforms : [];
 
             // check if app exists
             if (grunt.file.exists(options.path)) {
 
                 items.forEach(function(platform) {
 
-                    // check is platforms installed
-                    if (grunt.file.exists(options.path + '/platforms/' + platform)) {
-                        grunt.log.ok(getMessage('buildPlatform') + platform.toUpperCase());
+                    if (_.isString(platform)) {
 
-                        // cordova build <platform>
-                        grunt.util.spawn({
-                            cmd: 'cordova',
-                            args: [
-                                'build',
-                                platform
-                            ],
-                            opts: {
-                                cwd: options.path
-                            }
-                        }, onCompleted);
+                        // check is platforms installed
+                        if (grunt.file.exists(options.path + '/platforms/' + platform)) {
+                            grunt.log.ok(getMessage('buildPlatform') + platform.toUpperCase());
+
+                            // cordova build <platform>
+                            grunt.util.spawn({
+                                cmd: 'cordova',
+                                args: [
+                                    'build',
+                                    platform
+                                ],
+                                opts: {
+                                    cwd: options.path
+                                }
+                            }, onCompleted);
+                        }
                     }
                 });
             } else {
@@ -180,49 +197,48 @@ module.exports = function(grunt) {
          * @param data {Object} The Object to create a new App
          */
         function create(data) {
-            data = _.isObject(data) ? data : done(false);
+            data = _.isObject(data) ? data : {};
+            data.isUserRmDir = _.isBoolean(data.deleteOptionsPath) ? data.deleteOptionsPath : false;
 
-            var isUserRmDir = data.deleteOptionsPath || DEFAULT_DELETE_OPTION_PATH;
+            if (data.isUserRmDir) {
 
-            if (!_.isBoolean(isUserRmDir)) {
-                grunt.log.warn(getMessage('valueDeleteOptionsPathError'));
-                done(false);
-            }
-
-            // delete old app
-            if (grunt.file.exists(options.path) && isUserRmDir) {
-                grunt.file.delete(options.path, {force: true});
-            }
-
-            // create new folder
-            // BUGFIX: "cordova platform" need an exist folder
-            grunt.file.mkdir(options.path);
-
-            // cordova create <folder> <bundleid> <title>
-            grunt.util.spawn({
-                cmd: 'cordova',
-                args: [
-                    'create',
-                    options.path,
-                    (data.bundleId || options.bundleId),
-                    (data.title || options.title)
-                ]
-            }, function(error, result, code) {
-                if (code) {
-                    grunt.log.warn(code);
-                    grunt.log.warn(result);
-                    grunt.log.warn(error);
-                    grunt.log.warn(result.stderr);
-                } else {
-                    grunt.log.ok(result.stdout);
-
-                    addPlatforms(data.platforms);
-
-                    addPlugins(data.plugins);
-
-                    editConfigXml(data);
+                // delete old app
+                if (grunt.file.exists(options.path)) {
+                    grunt.file.delete(options.path, { force: true });
                 }
-            });
+
+                // create new folder
+                // BUGFIX: "cordova platform" need an exist folder
+                grunt.file.mkdir(options.path);
+
+                // cordova create <folder> <bundleid> <title>
+                grunt.util.spawn({
+                    cmd: 'cordova',
+                    args: [
+                        'create',
+                        options.path,
+                        _.isString(data.bundleId) && data.bundleId.length > 0 ? data.bundleId : options.bundleId,
+                        _.isString(data.title) && data.title.length > 0 ? data.title : options.title
+                    ]
+                }, function(error, result, code) {
+                    if (code) {
+                        grunt.log.warn(code);
+                        grunt.log.warn(result);
+                        grunt.log.warn(error);
+                        grunt.log.warn(result.stderr);
+                    } else {
+                        grunt.log.ok(result.stdout);
+
+                        addPlatforms(data.platforms);
+
+                        addPlugins(data.plugins);
+
+                        editConfigXml(data);
+                    }
+                });
+            } else {
+                grunt.log.warn(getMessage('valueDeleteOptionsPathError'));
+            }
         }
 
         /**
@@ -232,41 +248,44 @@ module.exports = function(grunt) {
          * @param data {Array}
          */
         function addPlatforms(data) {
-            data = _.isArray(data) ? data : done(false);
+            data = _.isArray(data) ? data : [];
 
             data.forEach(function(platform) {
 
-                // check for android SDK
-                if (platform === 'android') {
-                    isAndroidPlatformAdded = true;
-                }
+                if (_.isString(platform)) {
 
-                // cordova platform add <platform>
-                grunt.util.spawn({
-                    cmd: 'cordova',
-                    args: [
-                        'platform',
-                        'add',
-                        platform
-                    ],
-                    opts: {
-                        cwd: options.path
+                    // check for android SDK
+                    if (platform === 'android') {
+                        isAndroidPlatformAdded = true;
                     }
-                }, function (error, result, code) {
-                    if (code) {
-                        grunt.log.warn(code);
-                        grunt.log.warn(result);
-                        grunt.log.warn(error);
-                        grunt.log.warn(result.stderr);
-                        done(false);
-                    } else {
-                        grunt.log.ok(result.stdout);
 
-                        if (isAndroidPlatformAdded && grunt.file.isFile(options.path + '/' + fileAndroidManifest)) {
-                            replaceAndroidSdk();
+                    // cordova platform add <platform>
+                    grunt.util.spawn({
+                        cmd: 'cordova',
+                        args: [
+                            'platform',
+                            'add',
+                            platform
+                        ],
+                        opts: {
+                            cwd: options.path
                         }
-                    }
-                });
+                    }, function (error, result, code) {
+                        if (code) {
+                            grunt.log.warn(code);
+                            grunt.log.warn(result);
+                            grunt.log.warn(error);
+                            grunt.log.warn(result.stderr);
+                            done(false);
+                        } else {
+                            grunt.log.ok(result.stdout);
+
+                            if (isAndroidPlatformAdded && grunt.file.isFile(options.path + '/' + fileAndroidManifest)) {
+                                replaceAndroidSdk();
+                            }
+                        }
+                    });
+                }
             });
         }
 
@@ -275,25 +294,37 @@ module.exports = function(grunt) {
          * @param data {Array}
          */
         function addPlugins(data) {
-            data = _.isArray(data) ? data : done(false);
+            data = _.isArray(data) ? data : [];
 
             data.forEach(function(plugin) {
 
-                // cordova plugin add <plugin>
-                grunt.util.spawn({
-                    cmd: 'cordova',
-                    args: [
-                        'plugin',
-                        'add',
-                        plugin
-                    ],
-                    opts: {
-                        cwd: options.path
-                    }
-                }, onCompleted);
+                if (_.isString(plugin)) {
+
+                    // cordova plugin add <plugin>
+                    grunt.util.spawn({
+                        cmd: 'cordova',
+                        args: [
+                            'plugin',
+                            'add',
+                            plugin
+                        ],
+                        opts: {
+                            cwd: options.path
+                        }
+                    }, onCompleted);
+                }
             });
         }
 
+        /**
+         * Eventhandler
+         *
+         * @method onCompleted
+         * @param error
+         * @param result
+         * @param code
+         * @private
+         */
         function onCompleted(error, result, code) {
             if (code) {
                 grunt.log.warn(code);
