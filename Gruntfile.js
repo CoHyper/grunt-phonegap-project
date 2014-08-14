@@ -118,7 +118,7 @@ module.exports = function(grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'phonegap_project', 'nodeunit']);
+    grunt.registerTask('test', ['clean', 'phonegap_project:create', 'nodeunit']);
 
     // By default, jshint and create new project.
     grunt.registerTask('default', ['jshint', 'phonegap_project:create']);
