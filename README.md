@@ -12,23 +12,22 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
 
 ```
-#!bash
 $ npm install grunt-phonegap-project --save-dev
 ```
 
 It may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```
-#!bash
 grunt.loadNpmTasks('grunt-phonegap-project');
 ```
 
 ## The "phonegap_project" Require
+
+#### Platform SDK
 To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
 #### Cordova
 ```
-#!bash
 $ npm install cordova -g
 ```
 
@@ -40,12 +39,20 @@ Type: `String`, Default: `phoneGapProject`<br />
 Path to install the phonegap app.
 
 #### androidMinSdk
-Type: `Integer`<br />
+Type: `Number`<br />
 Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
 
 #### androidTargetSdk
-Type: `Integer`<br />
+Type: `Number`<br />
 Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
+
+#### version
+Type: `String`<br />
+Change the version in the config.xml
+
+#### copyConfigXml
+Type `Boolean`, Default: `false`<br />
+Copy the file `./config.xml` to folder `.www/`. On test with a webserver need this file.
 
 ## The "phonegap_project" Task
 
@@ -70,13 +77,9 @@ Type: `Boolean`, Default: `false`<br />
 <b>Info:</b> For create a new app need a empty folder.<br />
 <b>WARNING:</b> If `true` they are delete folder of `options.path`.
 
-* `version`<br />
-Type: `String`<br />
-
 * `access`<br />
-Type `Array`<br />
-// TODO :elements define the set of external domains the app is allowed to communicate with. The default value shown above allows it to access any server. See the Domain Whitelist Guide for details.
-
+Type `Array`, Default `["*"]`<br />
+Define the set of external domains the app is allowed to communicate with. The default value shown above allows it to access any server.
 
 ```
 grunt.initConfig({
@@ -130,7 +133,8 @@ grunt.initConfig({
     options: {
       path: 'myyApp',
       androidMinSdk: 10,
-      androidTargetSdk: 19
+      androidTargetSdk: 19,
+      copyConfigXml: true
     },
     create: {
       deleteOptionsPath: true,
@@ -138,8 +142,9 @@ grunt.initConfig({
       bundleId: 'de.myylinks.myyapp',
       version: "0.1.3",
       access: [
-        'http://myylinks.de',
-        'http://github.com'
+        'http://myylinks.de/',
+        'http://gruntjs.com/',
+        'http://github.com/'
       ],
       platforms: [
         'ios',
@@ -158,23 +163,22 @@ grunt.initConfig({
     }
   }
 });
-```
 
 grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
-</pre>
+```
 
 ## Release History
 
 ##### 2014-06-13 v0.1.3
 * update readme.md
-* add lodash
-* update function create()
-* add new variable deleteOptionsPath in create()
-* add debug comments
+* add new variable copyConfigXml // TODO
 * update grunt to 0.4.5
-* add new variable version in create()
-* add new variable access in create()
+* add lodash
+* add new variable deleteOptionsPath
+* add debug comments
+* add new variable version
+* add new variable access
 
 ##### 2014-05-23 v0.1.2
 * update readme.md

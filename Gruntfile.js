@@ -5,11 +5,9 @@
  * Copyright (c) 2014 svenlang
  * Licensed under the MIT license.
  */
-
 'use strict';
 
 var _ = require('lodash');
-
 
 module.exports = function(grunt) {
     grunt = _.isObject(grunt) ? grunt : {};
@@ -22,7 +20,7 @@ module.exports = function(grunt) {
      * @returns {Object}
      */
     function getTaskValues() {
-        // Travis no supported multilanguage, (cant install iOS and/or Android SDK)
+
         // add all cordova plugins, for testing with Travis
         var jsonFile = 'tasks/options/options_production.json',
             obj;
@@ -32,6 +30,8 @@ module.exports = function(grunt) {
             grunt.log.ok('########################');
             grunt.log.ok('# STATUS "DEVELOPMENT" #');
             grunt.log.ok('########################');
+
+            // Travis no supported multilanguage (cant install iOS and/or Android SDK), so test local with own file
             jsonFile = 'tasks/options/options_development.json';
         }
         obj = grunt.file.readJSON(jsonFile);
@@ -67,6 +67,7 @@ module.exports = function(grunt) {
             tests: [
                 // default folder
                 'phoneGapProject',
+
                 // settings folder
                 'myyApp'
             ]
@@ -78,7 +79,8 @@ module.exports = function(grunt) {
                 //path: 'newapp',
                 androidMinSdk: 9,
                 androidTargetSdk: 10,
-                version: "1.2.4" // TODO : add new variables
+                version: "2.3.4", // TODO : add new variables
+                copyConfigXml: true // TODO : add new variables
             },
             create: {
                 title: 'NewApp',
@@ -86,7 +88,6 @@ module.exports = function(grunt) {
                 platforms: getTaskValues().platforms,
                 plugins: getTaskValues().plugins,
                 deleteOptionsPath: true,
-                // TODO : add new variables
                 access: [
                     "http://myylinks.de",
                     "http://www.myylinks.de"
@@ -95,11 +96,6 @@ module.exports = function(grunt) {
             build: {
                 platforms: getTaskValues().platforms
             }
-        },
-
-        // Unit tests.
-        nodeunit: {
-            tests: ['test/*_test.js']
         }
 
     });
@@ -110,14 +106,9 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-    // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'phonegap_project', 'nodeunit']);
 
     // By default, lint and run all tests.
-    grunt.registerTask('default', ['jshint', 'test']);
+    grunt.registerTask('default', ['jshint', 'phonegap_project:create']);
 
     // All "phonegap_project" tasks
     grunt.registerTask('1 create new App', ['phonegap_project:create']);
