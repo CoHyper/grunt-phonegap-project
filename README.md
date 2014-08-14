@@ -11,23 +11,26 @@ This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
 
-<pre>
+```
+#!bash
 $ npm install grunt-phonegap-project --save-dev
-</pre>
+```
 
 It may be enabled inside your Gruntfile with this line of JavaScript:
 
-<pre>
+```
+#!bash
 grunt.loadNpmTasks('grunt-phonegap-project');
-</pre>
+```
 
 ## The "phonegap_project" Require
 To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
 
 #### Cordova
-<pre>
+```
+#!bash
 $ npm install cordova -g
-</pre>
+```
 
 ## The "phonegap_project" Options
 All options are optional.
@@ -75,7 +78,7 @@ Type `Array`<br />
 // TODO :elements define the set of external domains the app is allowed to communicate with. The default value shown above allows it to access any server. See the Domain Whitelist Guide for details.
 
 
-<pre>
+```
 grunt.initConfig({
   phonegap_project: {
     options: {
@@ -98,13 +101,13 @@ grunt.initConfig({
 });
 
 grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
-</pre>
+```
 
 #### build
 * platforms<br />
 Type: `Array`, Default: `[]`
 
-<pre>
+```
 grunt.initConfig({
   phonegap_project: {
     options: {},
@@ -118,10 +121,10 @@ grunt.initConfig({
 });
 
 grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
-</pre>
+```
 
 ## Full Examples
-<pre>
+```
 grunt.initConfig({
   phonegap_project: {
     options: {
@@ -155,6 +158,7 @@ grunt.initConfig({
     }
   }
 });
+```
 
 grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
 grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
