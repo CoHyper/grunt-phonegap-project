@@ -79,8 +79,8 @@ module.exports = function(grunt) {
                 //path: 'newapp',
                 androidMinSdk: 9,
                 androidTargetSdk: 10,
-                version: "2.3.4", // TODO : add new variables
-                copyConfigXml: true // TODO : add new variables
+                version: "2.3.4",
+                copyConfigXml: true
             },
             create: {
                 title: 'NewApp',

@@ -10,7 +10,6 @@
  * Licensed under the MIT license.
  */
 
-
 var _ = require('lodash');
 
 module.exports = function(grunt) {
@@ -26,14 +25,16 @@ module.exports = function(grunt) {
             UNDEFINED_ANDROID_TARGET_SDK = -1,
             isAndroidPlatformAdded = false,
             fileAndroidManifest = '/platforms/android/AndroidManifest.xml',
+
+            // require global options
             options = this.options({
-                // require global options
                 title: 'MyyApp',
                 bundleId: 'de.myylinks.myyapp',
                 path: 'phoneGapProject',
                 androidMinSdk: UNDEFINED_ANDROID_MIN_SDK,
                 androidTargetSdk: UNDEFINED_ANDROID_TARGET_SDK,
-                version: false
+                version: false,
+                copyConfigXml: false
             });
 
         /**
@@ -63,7 +64,7 @@ module.exports = function(grunt) {
          * Edit the config.xml with user settings
          *
          * @method editConfigXml
-         * @param data {Object} The Object to config the xml file
+         * @param data {Object} The Object to config the config.xml file
          */
         function editConfigXml(data) {
             data = _.isObject(data) ? data : {};
@@ -97,12 +98,11 @@ module.exports = function(grunt) {
                     grunt.file.write(file, fileSource.replace(/<\/widget\>/, '\t<access origin="' + url + '" />\n<\/widget>'));
                 });
 
-
+                // option variable "copyConfigXml"
                 if (options.copyConfigXml) {
 
                     // read file
                     fileSource = grunt.file.read(file);
-                    console.log(fileSource)
 
                     // copy file
                     grunt.file.write(file_www, fileSource);

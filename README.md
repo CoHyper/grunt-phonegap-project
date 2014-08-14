@@ -47,7 +47,7 @@ Type: `Number`<br />
 Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
 
 #### version
-Type: `String`<br />
+Type: `String`, Default no edit file and used cordova normaly version `0.0.1`<br />
 Change the version in the config.xml
 
 #### copyConfigXml
@@ -134,13 +134,13 @@ grunt.initConfig({
       path: 'myyApp',
       androidMinSdk: 10,
       androidTargetSdk: 19,
-      copyConfigXml: true
+      copyConfigXml: true,
+      version: "1.0.0"
     },
     create: {
       deleteOptionsPath: true,
       title: 'MyyApp',
       bundleId: 'de.myylinks.myyapp',
-      version: "0.1.3",
       access: [
         'http://myylinks.de/',
         'http://gruntjs.com/',
