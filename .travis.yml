@@ -1,15 +1,17 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
+  - "6"
+  - "5"
+  - "4"
 before_install:
-  - "npm install -g grunt"
-  - "npm install -g grunt-cli"
+  - npm install -g cordova
+  - npm install -g grunt
+  - npm install -g grunt-cli
 install:
-  - "npm install"
-before_script:
-  - "npm install cordova -g"
+  - npm install
+# before_script:
 script:
-  - "grunt 'clean files'"
-  - "grunt 'phonegap_project:create'"
-  - "grunt 'phonegap_project:build'"
+  - grunt
+  #- "grunt 'clean files'"
+  #- "grunt 'phonegap_project:create'"
+  #- "grunt 'phonegap_project:build'"
