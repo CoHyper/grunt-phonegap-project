@@ -47,10 +47,8 @@ module.exports = function (grunt) {
 						"android"
 					],
 					plugins: [
-						"cordova-plugin-camera",
-						"cordova-plugin-console",
-						"cordova-plugin-contacts",
-						"cordova-plugin-device"
+						"cordova-plugin-device",
+						"cordova-plugin-dialogs"
 					]
 				}
 			}

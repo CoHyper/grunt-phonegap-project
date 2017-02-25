@@ -3,18 +3,17 @@
 
 > Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms and plugins.
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://api.travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project)[![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://api.travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) 
 
 [![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-$ npm install grunt-phonegap-project --save-dev
+npm install grunt-phonegap-project --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -30,24 +29,21 @@ To add support or rebuild a project for any platform, you need from the same mac
 
 #### Cordova
 ```shell
-$ npm install cordova -g
+npm install cordova -g
 ```
 
 ## The "phonegap_project" Options
 All options are optional.
 
 #### options.path
-Type: `String`, Default: `build`
-
+Type: `String`, Default: `build`<br />
 Path to install the new app.
-
 
 #### options.title
 Type: `String`, Default: `MyyApp`
 
 #### options.bundleId
-Type: `String`, Default: `de.myylinks.myyapp`
-
+Type: `String`, Default: `de.myylinks.myyapp`<br />
 Unique identifier Package name for all Android Apps.
 
 #### options.platforms
@@ -59,8 +55,7 @@ Type: `Array`, Default: `[]`
 #### options.deleteOptionsPath
 Type: `Boolean`, Default: `false`
 
-<b>Info:</b> For create a new app need an empty folder.
-
+<b>Info:</b> For create a new app need an empty folder.<br />
 <b>WARNING:</b> If `true` they are delete folder of `options.path`.
 
 
@@ -102,6 +97,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ##### 2017-02-22 v0.1.5
 * update grunt to 1.0.1
 * add multitasking
+* clean project
 
 ##### 2017-02-22 v0.1.4
 * update
@@ -121,10 +117,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ##### 2014-04-24 v0.1.0
 * add some defaults cordova commands
-* cordova create -folder- -bundleid- -apptitle-
-* cordova platform add -platform-
-* cordova plugin add -plugin-
-* cordova build -platform-
 
 ## License
 Copyright (c) 2014 SvenLang<br />
