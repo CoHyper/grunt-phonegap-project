@@ -11,7 +11,7 @@ install:
   - npm install
 # before_script:
 script:
-  - grunt
-  #- "grunt 'clean files'"
-  #- "grunt 'phonegap_project:create'"
-  #- "grunt 'phonegap_project:build'"
+  - grunt phonegap_project:travis_nothing
+  - grunt phonegap_project:travis_only_platforms
+  - grunt phonegap_project:travis_only_plugins
+  - grunt phonegap_project:travis_all

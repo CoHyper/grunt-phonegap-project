@@ -4,12 +4,12 @@
   "version": "0.1.4",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
-    "name": "svenlang",
-    "email": "svenlang07@gmail.com"
+    "name": "SvenLang",
+    "email": "SvenLang07@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CoHyper/grunt-phonegap-project"
+    "url": "git://github.com/CoHyper/grunt-phonegap-project.git"
   },
   "bugs": {
     "url": "https://github.com/CoHyper/grunt-phonegap-project/issues"
@@ -21,32 +21,13 @@
     }
   ],
   "engines": {
-    "node": ">= 7.6.0",
-    "npm": ">= 4.1.2"
+    "node": ">= 0.8.0"
   },
-  "scripts": {
-    "create": "grunt 'phonegap_project:create'",
-    "build": "grunt 'phonegap_project:build'"
+  "scripts": {},
+  "devDependencies": {
+    "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin",
-    "grunt",
-    "phonegap",
-    "cordova",
-    "androidMinSdk",
-    "androidTargetSdk",
-    "folder",
-    "path",
-    "bundleId",
-    "create",
-    "build",
-    "plugin",
-    "platform",
-    "version",
-    "accesses",
-    "domains"
-  ],
-  "devDependencies": {
-    "grunt": "^1.0.1"
-  }
+    "gruntplugin"
+  ]
 }
