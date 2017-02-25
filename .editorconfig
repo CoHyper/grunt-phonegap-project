@@ -9,7 +9,7 @@ root = true
 charset = utf-8
 
 
-[*.{html,css,js,json,php,md,txt}]
+[*.{html,css,js,json,php,md,txt, yml}]
 end_of_line = lf
 indent_style = tab
 insert_final_newline = true
@@ -18,9 +18,10 @@ indent_size = 2
 
 
 # Ignore paths && add to .ignore
-# composer
-# jetbrains
-[/vendor/**,/.idea/**]
+# Composer (PHP)
+# Jetbrains (IDE)
+# Node (JS)
+[/vendor/**,/.idea/**, /node_modules/**]
 charset = none
 end_of_line = none
 insert_final_newline = none

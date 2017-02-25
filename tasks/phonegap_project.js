@@ -23,37 +23,34 @@ module.exports = function (grunt) {
 	 */
 
 	grunt.registerMultiTask('phonegap_project', 'The best Grunt plugin ever.', function () {
+
+		// debug
+		console.log(this.target, this.data);
+
 		var done = this.async();
 		var timer = 2000;
 
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({
-			path: 'build_3',
-			title: 'any',
-			bundleId: 'com.any.more',
-			platforms: [
-				'browser'
-				// todo need solution for travis -> , 'android'
-			],
-			plugins: [
-				'cordova-plugin-device',
-				'cordova-plugin-dialogs'
-			]
+			path: 'phoneGapProject',
+			title: 'MyyApp',
+			bundleId: 'de.myylinks.myyapp',
+			platforms: [],
+			plugins: []
+
+			// todo - next version
+			// androidMinSdk: UNDEFINED_ANDROID_MIN_SDK,
+			// androidTargetSdk: UNDEFINED_ANDROID_TARGET_SDK,
+			// version: false,
+			// copyConfigXml: false
 		});
 
 
-
-		/**
-		 * Require delete old app before new install.
-		 */
-		//if (!grunt.file.exists(options.path)) {
+		// only if path/folder not exists create new app
 			if (grunt.file.isDir(options.path) === false) {
 
-			//grunt.file.delete(options.path, {force: true});
-			//grunt.log.warn('Please delete existing folder \"' + options.path + '\"');
-			// done(false);
 
-
+				// check all variables exists
 			if (options.path && options.bundleId && options.title) {
 				/**
 				 * "cordova create <path> <bundleId> <title>"
@@ -203,10 +200,6 @@ module.exports = function (grunt) {
 			});
 
 		}
-
-
-		console.log(this.target);
-		console.log(this.data);
 
 
 	});
