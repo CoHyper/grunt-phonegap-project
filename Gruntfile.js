@@ -22,8 +22,7 @@ module.exports = function (grunt) {
 					path: "travis_only_platforms",
 					platforms: [
 						"browser",
-						"android",
-						"ios"
+						"android"
 					]
 				}
 			},
@@ -45,8 +44,7 @@ module.exports = function (grunt) {
 					path: "travis_all",
 					platforms: [
 						"browser",
-						"android",
-						"ios"
+						"android"
 					],
 					plugins: [
 						"cordova-plugin-camera",

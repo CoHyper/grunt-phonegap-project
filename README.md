@@ -1,8 +1,12 @@
-# grunt-cordova-project
-
+# grunt-phonegap-project
 > The best Grunt plugin ever.
 
-[![Build Status](https://travis-ci.org/CoHyper/grunt-cordova-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-cordova-project)
+> Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms and plugins.
+
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://api.travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project)[![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) 
+
+[![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
+
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -10,258 +14,94 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-cordova-project --save-dev
+$ npm install grunt-phonegap-project --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-cordova-project');
-```
-
-## The "cordova_project" task
-
-### Overview
-In your project's Gruntfile, add a section named `cordova_project` to the data object passed into `grunt.initConfig()`.
-
-```js
-grunt.initConfig({
-  cordova_project: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-});
-```
-
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  cordova_project: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  cordova_project: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
-
-
-# grunt-phonegap-project
-> Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms, plugins, androidMinSdk, androidTargetSdk, version and domains accesses.
-
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://api.travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) [![Dependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project.png)](https://david-dm.org/CoHyper/grunt-phonegap-project)
-[![devDependency Status](https://david-dm.org/CoHyper/grunt-phonegap-project/dev-status.png)](https://david-dm.org/CoHyper/grunt-phonegap-project#info=devDependencies) [![Gittip](http://img.shields.io/gittip/CoHyper.png)](https://www.gittip.com/CoHyper/)
-
-[![NPM](https://nodei.co/npm/grunt-phonegap-project.png?downloads=true)](https://nodei.co/npm/grunt-phonegap-project/)
-
-## Getting Started
-This plugin requires Grunt `~0.4.5`
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command.
-
-```
-$ npm install grunt-phonegap-project --save-dev
-```
-
-It may be enabled inside your Gruntfile with this line of JavaScript:
-
-```
 grunt.loadNpmTasks('grunt-phonegap-project');
 ```
 
 ## The "phonegap_project" Require
 
 #### Platform SDK
-To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://docs.phonegap.com/en/edge/guide_cli_index.md.html).
+To add support or rebuild a project for any platform, you need from the same machine that [supports the platform's SDK](http://cordova.apache.org/docs/en/latest/guide/cli/index.html).
 
 #### Cordova
-```
+```shell
 $ npm install cordova -g
 ```
 
 ## The "phonegap_project" Options
 All options are optional.
 
-#### path
-Type: `String`, Default: `phoneGapProject`<br />
-Path to install the phonegap app.
+#### options.path
+Type: `String`, Default: `build`
 
-#### androidMinSdk
-Type: `Number`<br />
-Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
+Path to install the new app.
 
-#### androidTargetSdk
-Type: `Number`<br />
-Changed in `./platforms/android/AndroidManifest.xml` after `task.create`.
 
-#### version
-Type: `String`, Default no edit file and used cordova normaly version `0.0.1`<br />
-Change the version in the config.xml
-
-#### copyConfigXml
-Type `Boolean`, Default: `false`<br />
-Copy the file `./config.xml` to folder `.www/`. On test with a webserver need this file.
-
-## The "phonegap_project" Task
-
-#### create
-* `title`<br />
+#### options.title
 Type: `String`, Default: `MyyApp`
 
-* `bundleId`<br />
-Type: `String`, Default: `de.myylinks.myyapp`<br />
+#### options.bundleId
+Type: `String`, Default: `de.myylinks.myyapp`
+
 Unique identifier Package name for all Android Apps.
 
-* `platforms`<br />
-Type: `Array`, Default: `[]`<br />
-Install directly with cordova command.
-
-* `plugins`<br />
+#### options.platforms
 Type: `Array`, Default: `[]`
-Install directly with cordova command.
 
-* `deleteOptionsPath`<br />
-Type: `Boolean`, Default: `false`<br />
-<b>Info:</b> For create a new app need a empty folder.<br />
+#### options.plugins
+Type: `Array`, Default: `[]`
+
+#### options.deleteOptionsPath
+Type: `Boolean`, Default: `false`
+
+<b>Info:</b> For create a new app need an empty folder.
+
 <b>WARNING:</b> If `true` they are delete folder of `options.path`.
 
-* `access`<br />
-Type `Array`, Default `["*"]`<br />
-Define the set of external domains the app is allowed to communicate with. The default value shown above allows it to access any server.
 
-```
-grunt.initConfig({
-  phonegap_project: {
-    options: {
-      path:'MyyApp'
-    },
-    create: {
-      deleteOptionsPath: true,
-      title: 'MyyApp',
-      bundleId: 'de.myylinks.myyapp',
-      platforms: [
-        'ios',
-        'android'
-      ],
-      plugins: [
-        'org.apache.cordova.camera',
-        'org.apache.cordova.battery-status'
-      ]
-    }
-  }
-});
+## The "phonegap_project" task
 
-grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
-```
+### Overview
+In your project's Gruntfile, add a section named `phonegap_project` to the data object passed into `grunt.initConfig()`.
 
-#### build
-* platforms<br />
-Type: `Array`, Default: `[]`
-
-```
-grunt.initConfig({
-  phonegap_project: {
-    options: {},
-    build: {
-      platforms: [
-        'ios',
-        'android'
-      ]
-    }
-  }
-});
-
-grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
-```
 
 ## Full Examples
-```
+```js
 grunt.initConfig({
-  phonegap_project: {
-    options: {
-      path: 'myyApp',
-      androidMinSdk: 10,
-      androidTargetSdk: 19,
-      copyConfigXml: true,
-      version: "1.0.0"
-    },
-    create: {
-      deleteOptionsPath: true,
-      title: 'MyyApp',
-      bundleId: 'de.myylinks.myyapp',
-      access: [
-        'http://myylinks.de/',
-        'http://gruntjs.com/',
-        'http://github.com/'
-      ],
-      platforms: [
-        'ios',
-        'android'
-      ],
-      plugins: [
-        'org.apache.cordova.camera',
-        'org.apache.cordova.battery-status'
-      ]
-    },
-    build: {
-      platforms: [
-        'ios',
-        'android'
-      ]
-    }
-  }
+	phonegap_project: {
+		app_1: {
+			options: {
+				deleteOptionsPath: true,
+				path: "app_1",
+				platforms: [
+					"browser",
+					"android"
+				],
+				plugins: [
+					"cordova-plugin-battery-status",
+					"cordova-plugin-camera"
+				]
+			}
+		}
+	}
 });
-
-grunt.registerTask('phonegap: create new app', ['phonegap_project:create']);
-grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
+	
+grunt.registerTask('phonegap: create new app', ['phonegap_project:app_1']);
 ```
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+##### 2017-02-22 v0.1.5
+* update grunt to 1.0.1
+* add multitasking
 
 ##### 2017-02-22 v0.1.4
 * update
@@ -270,11 +110,7 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * update grunt to 0.4.5
 * add lodash
 * add new variable deleteOptionsPath
-* add debug comments
-* add new variable version
-* add new variable access
-* add new variable copyConfigXml
-* little bugfixes
+* bugfixes
 
 ##### 2014-05-23 v0.1.2
 * bugfix some grunt functions

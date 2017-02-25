@@ -108,6 +108,8 @@ module.exports = function (grunt) {
 			var platformsLength = options.platforms.length;
 
 			options.platforms.forEach(function (item, index) {
+
+
 				grunt.util.spawn({
 					cmd: 'cordova',
 					args: [
@@ -194,12 +196,10 @@ module.exports = function (grunt) {
 			}
 
 			// require empty folder
-			if (options.deleteOptionsPath) {
+			if (options.deleteOptionsPath && grunt.file.isDir(options.path)) {
 				grunt.file.delete(options.path, { force: true });
 			}
 		}
-
 	});
-
 
 };
