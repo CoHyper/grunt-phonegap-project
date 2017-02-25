@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
+  - "7"
+  - "6"
 before_install:
+  - "npm install -g cordova"
   - "npm install -g grunt"
   - "npm install -g grunt-cli"
 install:
   - "npm install"
-before_script:
-  - "npm install cordova -g"
+# before_script:
 script:
-  - "grunt 'clean files'"
-  - "grunt 'phonegap_project:create'"
-  - "grunt 'phonegap_project:build'"
+  - "grunt phonegap_project:travis_only_platforms"
+  - "grunt phonegap_project:travis_only_plugins"
+  - "grunt phonegap_project:travis_all"

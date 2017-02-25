@@ -1,0 +1,39 @@
+# EditorConfig is awesome: http://EditorConfig.org
+# https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig
+
+# top-most EditorConfig file
+root = true
+
+
+[*]
+charset = utf-8
+
+
+[*.{html,css,js,json,php,md,txt, yml}]
+end_of_line = lf
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_size = 2
+
+
+# Ignore paths && add to .ignore
+# Composer (PHP)
+# Jetbrains (IDE)
+# Node (JS)
+[/vendor/**,/.idea/**, /node_modules/**]
+charset = none
+end_of_line = none
+insert_final_newline = none
+trim_trailing_whitespace = none
+indent_style = none
+indent_size = none
+
+
+
+# Indentation override for all JS under lib directory
+# [lib/**.js]
+
+
+# Matches the exact files either package.json or .travis.yml
+# [{package.json,.travis.yml}]
