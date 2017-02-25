@@ -28,6 +28,16 @@
     "grunt": "^1.0.1"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+		"grunt",
+		"phonegap",
+		"cordova",
+		"folder",
+		"path",
+		"bundleId",
+		"create",
+		"build",
+		"plugin",
+		"platform"
   ]
 }

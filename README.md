@@ -1,6 +1,6 @@
 # grunt-phonegap-project
 
-> Create a new [Cordova](http://cordova.apache.org) Application. Extra config: folder, bundleId, platforms and plugins..
+> Create a new [Cordova](http://cordova.apache.org) Application. Extra config: folder, bundleId, platforms and plugins.
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://api.travis-ci.org/CoHyper/grunt-phonegap-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-phonegap-project) [![GitHub version](https://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project.svg)](http://badge.fury.io/gh/CoHyper%2Fgrunt-phonegap-project) 
 
