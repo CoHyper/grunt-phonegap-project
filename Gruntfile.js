@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 		phonegap_project: {
 			test_local: {
 				options: {
-					path: "build/test_only_platforms",
+					path: "build_test_only_platforms",
 					platforms: [
 						"browser",
 						"android",
@@ -31,12 +31,12 @@ module.exports = function (grunt) {
 			},
 			travis_nothing: {
 				options: {
-					path: "build/travis_nothing"
+					path: "build_travis_nothing"
 				}
 			},
 			travis_only_platforms: {
 				options: {
-					path: "build/travis_only_platforms",
+					path: "build_travis_only_platforms",
 					platforms: [
 						"browser",
 						"android"
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 			},
 			travis_only_plugins: {
 				options: {
-					path: "build/travis_only_plugins",
+					path: "build_travis_only_plugins",
 					plugins: [
 						"cordova-plugin-battery-status",
 						"cordova-plugin-camera"
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
 			},
 			travis_all: {
 				options: {
-					path: "build/travis_all",
+					path: "build_travis_all",
 					platforms: [
 						"browser"
 					],
