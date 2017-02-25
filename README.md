@@ -1,3 +1,96 @@
+# grunt-cordova-project
+
+> The best Grunt plugin ever.
+
+[![Build Status](https://travis-ci.org/CoHyper/grunt-cordova-project.svg?branch=master)](https://travis-ci.org/CoHyper/grunt-cordova-project)
+
+## Getting Started
+This plugin requires Grunt `~0.4.5`
+
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+
+```shell
+npm install grunt-cordova-project --save-dev
+```
+
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+```js
+grunt.loadNpmTasks('grunt-cordova-project');
+```
+
+## The "cordova_project" task
+
+### Overview
+In your project's Gruntfile, add a section named `cordova_project` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  cordova_project: {
+    options: {
+      // Task-specific options go here.
+    },
+    your_target: {
+      // Target-specific file lists and/or options go here.
+    },
+  },
+});
+```
+
+### Options
+
+#### options.separator
+Type: `String`
+Default value: `',  '`
+
+A string value that is used to do something with whatever.
+
+#### options.punctuation
+Type: `String`
+Default value: `'.'`
+
+A string value that is used to do something else with whatever else.
+
+### Usage Examples
+
+#### Default Options
+In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+
+```js
+grunt.initConfig({
+  cordova_project: {
+    options: {},
+    files: {
+      'dest/default_options': ['src/testing', 'src/123'],
+    },
+  },
+});
+```
+
+#### Custom Options
+In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+
+```js
+grunt.initConfig({
+  cordova_project: {
+    options: {
+      separator: ': ',
+      punctuation: ' !!!',
+    },
+    files: {
+      'dest/default_options': ['src/testing', 'src/123'],
+    },
+  },
+});
+```
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+## Release History
+_(Nothing yet)_
+
+
 # grunt-phonegap-project
 > Create a [Cordova](http://cordova.apache.org) Application with config folder, bundleId, platforms, plugins, androidMinSdk, androidTargetSdk, version and domains accesses.
 
@@ -170,6 +263,9 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 
 ## Release History
 
+##### 2017-02-22 v0.1.4
+* update
+
 ##### 2014-08-14 v0.1.3
 * update grunt to 0.4.5
 * add lodash
@@ -179,10 +275,8 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * add new variable access
 * add new variable copyConfigXml
 * little bugfixes
-* update readme.md
 
 ##### 2014-05-23 v0.1.2
-* update readme.md
 * bugfix some grunt functions
 * add travis
 
@@ -197,8 +291,5 @@ grunt.registerTask('phonegap: build app', ['phonegap_project:build']);
 * cordova build -platform-
 
 ## License
-Copyright (c) 2014 svenlang<br />
+Copyright (c) 2014 SvenLang<br />
 Licensed under the MIT license.
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/CoHyper/grunt-phonegap-project/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

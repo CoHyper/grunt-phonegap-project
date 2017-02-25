@@ -1,4 +1,6 @@
-###
+### 'grunt-phonegap-project'
+build/
+
 
 ### Android template
 # Built application files
