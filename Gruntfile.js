@@ -39,7 +39,8 @@ module.exports = function (grunt) {
 					path: "build_travis_only_platforms",
 					platforms: [
 						"browser",
-						"android"
+						"android",
+						"ios"
 					]
 				}
 			},
@@ -77,8 +78,7 @@ module.exports = function (grunt) {
 						"cordova-plugin-network-information",
 						"cordova-plugin-splashscreen",
 						"cordova-plugin-statusbar",
-						"cordova-plugin-vibration",
-						"cordova-plugin-whitelist"
+						"cordova-plugin-vibration"
 					]
 				}
 			}
