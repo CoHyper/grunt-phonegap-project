@@ -15,9 +15,10 @@ module.exports = function (grunt) {
 
 		// Configuration to be run (and then tested).
 		phonegap_project: {
+
 			travis_only_platforms: {
 				options: {
-					isDevelopment: true,
+					_isDevelopment: true,
 					deleteOptionsPath: true,
 					path: "travis_only_platforms",
 					platforms: [
@@ -26,9 +27,10 @@ module.exports = function (grunt) {
 					]
 				}
 			},
+
 			travis_only_plugins: {
 				options: {
-					isDevelopment: true,
+					_isDevelopment: true,
 					deleteOptionsPath: true,
 					path: "travis_only_plugins",
 					plugins: [
@@ -37,14 +39,17 @@ module.exports = function (grunt) {
 					]
 				}
 			},
+
 			travis_all: {
 				options: {
-					isDevelopment: true,
+					_isDevelopment: true,
 					deleteOptionsPath: true,
 					path: "travis_all",
+					title: "MyApp",
+					bundleId: "com.apuerto.myyapp",
 					platforms: [
-						"browser",
-						"android"
+						"android",
+						"browser"
 					],
 					plugins: [
 						"cordova-plugin-device",
@@ -52,15 +57,16 @@ module.exports = function (grunt) {
 					]
 				}
 			}
-		}
 
+		}
+		
 	});
 
 	// Actually load this plugin's task(s).
 	grunt.loadTasks('tasks');
 
 
-	// By default run all travis tests.
+	// By default run all tasks.
 	grunt.registerTask('default', ['phonegap_project']);
 
 };

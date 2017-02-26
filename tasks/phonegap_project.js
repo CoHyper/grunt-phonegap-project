@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({
-			isDevelopment: false,
+			_isDevelopment: false, // private
 			deleteOptionsPath: false,
 			path: 'build',
 			title: 'MyyApp',
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
 
 
 		// debugging
-		if (options.isDevelopment) {
+		if (options._isDevelopment) {
 			console.log(this.target, this.data);
 		}
 
@@ -86,7 +86,7 @@ module.exports = function (grunt) {
 							} else if (options.plugins.length) {
 								addPlugins();
 							} else {
-								if (options.isDevelopment) {
+								if (options._isDevelopment) {
 									grunt.log.ok('### Done');
 								}
 								done(true);
@@ -132,7 +132,8 @@ module.exports = function (grunt) {
 						grunt.log.ok(result.stdout);
 
 						if (platformsLength - 1 === index) {
-							if (options.isDevelopment) {
+
+							if (options._isDevelopment) {
 								grunt.log.ok('### Adding all platforms');
 							}
 							setTimeout(function () {
@@ -152,52 +153,59 @@ module.exports = function (grunt) {
 
 			var pluginsLength = options.plugins.length;
 
-			options.plugins.forEach(function (item, index) {
-				grunt.util.spawn({
-					cmd: 'cordova',
-					args: [
-						'plugin',
-						'add',
-						item,
-						'--save'
-					],
-					opts: {
-						cwd: options.path
-					}
-				}, function (error, result, code) {
-					if (code) {
-						grunt.log.warn(code);
-						grunt.log.warn(result);
-						grunt.log.warn(error);
-						grunt.log.warn(result.stderr);
-						done(false);
-					} else {
-						grunt.log.ok(result.stdout);
-						if (pluginsLength - 1 === index) {
-							if (options.isDevelopment) {
-								grunt.log.ok('### Adding all plugins');
-								grunt.log.ok('### Done');
-							}
-							done(true);
+			if (pluginsLength) {
+
+				options.plugins.forEach(function (item, index) {
+					grunt.util.spawn({
+						cmd: 'cordova',
+						args: [
+							'plugin',
+							'add',
+							item,
+							'--save'
+						],
+						opts: {
+							cwd: options.path
 						}
-					}
+					}, function (error, result, code) {
+						if (code) {
+							grunt.log.warn(code);
+							grunt.log.warn(result);
+							grunt.log.warn(error);
+							grunt.log.warn(result.stderr);
+							done(false);
+						} else {
+							grunt.log.ok(result.stdout);
+							if (pluginsLength - 1 === index) {
+								if (options._isDevelopment) {
+									grunt.log.ok('### Adding all plugins');
+									grunt.log.ok('### Done');
+								}
+								done(true);
+							}
+						}
+					});
 				});
-			});
+			} else if (options._isDevelopment) {
+				grunt.log.ok('### Done');
+			}
+			// else { /* nothing */ }
 		}
 
 		/**
 		 * Require empty app folder.
 		 */
 		function cleanFolder() {
+
 			// for testing and travis
-			if (options.isDevelopment) {
+			if (options._isDevelopment) {
 				options.path = developmentFolder + '/' + options.path;
 				grunt.file.mkdir(developmentFolder);
 			}
 
 			// require empty folder
 			if (options.deleteOptionsPath && grunt.file.isDir(options.path)) {
-				grunt.file.delete(options.path, { force: true });
+				grunt.file.delete(options.path, {force: true});
 			}
 		}
 	});
