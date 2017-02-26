@@ -1,6 +1,6 @@
 {
   "name": "grunt-phonegap-project",
-  "description": "Create a new Cordova Application. Extra config: folder, bundleId, platforms and plugins.",
+  "description": "Create a new Cordova Application. Extra config: folder, title, bundleId, platforms and plugins.",
   "version": "0.1.5",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
@@ -33,11 +33,15 @@
 		"phonegap",
 		"cordova",
 		"folder",
+    "title",
 		"path",
 		"bundleId",
 		"create",
 		"build",
 		"plugin",
-		"platform"
+		"platform",
+    "browser",
+    "node",
+    "tool"
   ]
 }
