@@ -120,5 +120,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 * add some defaults cordova commands
 
 ## License
-Copyright (c) 2014 SvenLang<br />
+Copyright (c) 2014 Sven Hedström-Lang<br />
 Licensed under the MIT license.

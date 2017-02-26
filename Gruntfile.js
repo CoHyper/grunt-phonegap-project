@@ -2,7 +2,7 @@
  * grunt-phonegap-project
  * https://github.com/CoHyper/grunt-phonegap-project
  *
- * Copyright (c) 2014 SvenLang
+ * Copyright (c) 2014 Sven Hedström-Lang
  * Licensed under the MIT license.
  */
 
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('tasks');
 
 
-	// By default run all tests.
+	// By default run all travis tests.
 	grunt.registerTask('default', ['phonegap_project']);
 
 };

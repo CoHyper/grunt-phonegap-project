@@ -1,10 +1,10 @@
 {
   "name": "grunt-phonegap-project",
   "description": "Create a new Cordova Application. Extra config: folder, title, bundleId, platforms and plugins.",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://github.com/CoHyper/grunt-phonegap-project",
   "author": {
-    "name": "SvenLang",
+    "name": "Sven Hedström-Lang",
     "email": "SvenLang07@gmail.com"
   },
   "repository": {

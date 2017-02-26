@@ -4,23 +4,23 @@
  * grunt-phonegap-project
  * https://github.com/CoHyper/grunt-phonegap-project
  *
- * Copyright (c) 2014 SvenLang
+ * Copyright (c) 2014 Sven Hedström-Lang
  * Licensed under the MIT license.
  */
 
 module.exports = function (grunt) {
 
-	// Please see the Grunt documentation for more information regarding task
-	// creation: http://gruntjs.com/creating-tasks
-
 	/**
-	 * 1. create
-	 * 2. platforms and/or plugins
+	 * Steps
+	 * 1. clean
+	 * 2. create new
+	 * 3. add platforms and/or plugins
 	 * done
 	 */
 
 	grunt.registerMultiTask('phonegap_project', 'The best Grunt plugin ever.', function () {
 
+		// constants
 		var done = this.async();
 		var timer = 2000;
 		var developmentFolder = 'build';
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
 
 
 		/**
-		 * The Main function
+		 * The Main function.
 		 */
 		function createNewApp() {
 
