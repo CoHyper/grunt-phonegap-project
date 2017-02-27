@@ -90,10 +90,11 @@ grunt.initConfig({
 grunt.registerTask('create new app', ['phonegap_project:app_myyapp']);
 ```
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+##### 2017-xxx v0.1.6
+* update comments
 
 ##### 2017-02-22 v0.1.5
 * update grunt to 1.0.1
