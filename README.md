@@ -96,7 +96,7 @@ grunt.registerTask('create new app', ['phonegap_project:app_myyapp']);
 ##### 2017-xxx v0.1.6
 * update comments
 
-##### 2017-02-22 v0.1.5
+##### 2017-02-26 v0.1.5
 * update grunt to 1.0.1
 * add multitasking
 * clean project
